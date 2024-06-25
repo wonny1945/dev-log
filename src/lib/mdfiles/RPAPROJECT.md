@@ -1,16 +1,13 @@
-# RPA 업무 개선 프로젝트
-
 ---
+title: "RPA 업무 개선 프로젝트"
+date: "2022"
 description: 사내 반복 결제 업무 RPA 개선 프로젝트 
-categories: 
-    - HTML/CSS 
-    - JS
-    - python
-    - Vue
+categories: HTML/CSS,JS,python,Vue
 ---
-![Project-screen1](/static/RPA-PROJECT.png)
 
-![Project-screen2](/static/RPA-PROJECT2.png)
+![Project-screen1](/RPA-PROJECT.png)
+
+![Project-screen2](/RPA-PROJECT2.png)
 ### 🎙️ 프로젝트 목적
 
 ---
