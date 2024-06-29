@@ -14,6 +14,7 @@
 
 			<div class="grid gap-6">
 				<h3 class="text-3xl font-bold tracking-tight">Hello I'm Wonny</h3>
+				    <Separator class="-mt-3"/>
 				<Card.Root>
 					<Card.Header>
 						<Card.Title class="text-2xl">I'm a pragmatic developer 🧑‍💻</Card.Title>
@@ -97,6 +98,7 @@
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">Agile Dev</Button>
 								<Button class="w-fix mt-2 " variant="outline">TDD</Button>
+								<Button class="w-fix mt-2 " variant="outline">CI/CD</Button>
 							</div>
 						</div>
 
