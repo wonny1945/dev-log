@@ -18,6 +18,7 @@
     // 경로 업데이트 함수
     const updatePath = () => {
         url = $page.url.pathname;
+
     };
 
     let unsubscribe: Unsubscriber;
