@@ -4,6 +4,7 @@
     import * as Card from '$lib/components/ui/card';
     import * as Drawer from "$lib/components/ui/drawer";
     import type {WorkMetadata} from '$lib/parseMarkdown';
+    import {base} from "$app/paths"
 
 
     interface Work extends WorkMetadata {
@@ -61,7 +62,7 @@
                                 <div class="overflow-x-auto h-full">
                                     <div class="flex flex-nowrap gap-4 pb-4">
                                         {#each work.screenshots as screenshot}
-                                            <img src={screenshot} alt="Project Screenshot"
+                                            <img src={base}{screenshot} alt="Project Screenshot"
                                                  class="h-[40vh] w-auto flex-shrink-0 object-contain rounded shadow hover:shadow-lg transition-shadow duration-300 ease-in-out"/>
                                         {/each}
                                     </div>
