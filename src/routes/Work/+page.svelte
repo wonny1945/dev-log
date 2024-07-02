@@ -57,12 +57,11 @@
 <div class="grid gap-6">
     <h3 class="text-3xl font-bold tracking-tight">Work</h3>
     <Separator class="-mt-3"/>
-    <div class="flex flex-row">
-         {#each works as work (work.title)}
-            <ProjectCard {work}/>
-        {/each}
-    </div>
-
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {#each works as work (work.title)}
+        <ProjectCard {work}/>
+    {/each}
+</div>
 </div>
 
 

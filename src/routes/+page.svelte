@@ -58,14 +58,14 @@
 						<Card.Title class="text-2xl">Skills & Works</Card.Title>
 						<Card.Description>
 							I am a developer, data engineer, and problem solver with the following skills.
-							<br />Please click the button to see more details works.
+							<br/>
 						</Card.Description>
 					</Card.Header>
 					<Card.Content>
-						<div class="grid grid-cols-4 w-auto gap-2">
+						<div class="grid grid-cols-4 w-auto gap-2 pointer-events-none">
 							<div class="flex flex-col">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 pointer-events-none">
-									<SquareCode class="h-8 w-6 mr-1.5" />
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+									<SquareCode class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Frontend
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">Javascript</Button>
@@ -73,9 +73,9 @@
 								<Button class="w-fix mt-2" variant="outline">Vue</Button>
 							</div>
 							<div class="flex flex-col ">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 pointer-events-none">
-									<Database class="h-8 w-6 mr-1.5" />
-									Data Engineer
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+									<Database class="h-8 w-6 mr-1.5 hidden sm:block" />
+									Data Ops
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">AWS&CDK</Button>
 								<Button class="w-fix mt-2 " variant="outline">Airflow</Button>
@@ -83,8 +83,8 @@
 							</div>
 
 							<div class="flex flex-col">
-							<Button variant="outline" class="h-auto w-fix bg-neutral-50 pointer-events-none">
-									<Server class="h-8 w-6 mr-1.5" />
+							<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+									<Server class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Backend
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">Python</Button>
@@ -92,8 +92,8 @@
 							</div>
 
 							<div class="flex flex-col">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 pointer-events-none">
-									<HandHeart class="h-8 w-6 mr-1.5" />
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+									<HandHeart class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Loves
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">Agile Dev</Button>
