@@ -58,15 +58,11 @@
         <div class="mx-auto w-full max-w-6xl gap-2 flex flex-col ">
             <div class="w-11 h-11 animate-bounce ">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                    <!-- 토끼의 몸체를 나타내는 사각형 -->
                     <rect x="10" y="20" width="30" height="20" style="fill:none;stroke:#000000;"/>
-                    <!-- 토끼의 귀를 나타내는 사각형 -->
                     <rect x="10" y="10" width="10" height="10" style="fill:none;stroke:#000000;"/>
                     <rect x="30" y="10" width="10" height="10" style="fill:none;stroke:#000000;"/>
-                    <!-- 토끼의 눈을 나타내는 원 -->
                     <circle cx="20" cy="30" r="2" style="fill:#000000;"/>
                     <circle cx="30" cy="30" r="2" style="fill:#000000;"/>
-                    <!-- 토끼의 콧수염을 나타내는 선 -->
                     <line x1="20" y1="35" x2="30" y2="35" style="stroke:#000000;"/>
                 </svg>
             </div>
