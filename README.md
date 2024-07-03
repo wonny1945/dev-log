@@ -1,38 +1,64 @@
-# create-svelte
+# Wonny's Dev-Log
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A personal development blog showcasing various projects and experiences in software development and data Enginner.
 
-## Creating a project
+## 🌟 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Responsive design for both desktop and mobile views
+- Dark mode support
+- Project showcases with detailed information
+- Tech stack and skills visualization
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## 🛠 Tech Stack
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **Frontend**: SvelteKit, TailwindCSS
+- **Backend**: Github Page
 
-## Developing
+## 🚀 Projects Showcased
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. **Expense Management Automation Web Application**
+   - Duration: 2021.03 ~ 2022.06
+   - Tech: HTML/CSS, JS, Python, Vue, Docker
+   - Role: Front-end Developer, Selenium RPA Module Developer
 
-```bash
-npm run dev
+2. **Equipment Inspection Process Improvement Project**
+   - Tech: JavaScript, HTML, CSS, Vue, Vuetify, Python, Django DRF, Pandas
+   - Role: Front-end Developer
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+3. **Key News Improvement Project**
+   - Tech: JavaScript, HTML, CSS, Vue, Vuetify, Python, Django DRF, Pandas, newspaper, gensim, nltk, konlpy
+   - Role: Article Recommendation Module Developer
 
-## Building
+4. **Power Plant Maximum Output Prediction Project**
+   - Tech: JavaScript, HTML, CSS, Python, Django, Pandas, XGBoost
+   - Role: Front-end Developer, AI Model Developer
 
-To create a production version of your app:
+5. **Biomass Power Plant Cloud-based DevOps Environment Project**
+   - Tech: AWS CDK, Python, Lambda, S3, Airflow, QuickSight
+   - Role: DevOps Environment Developer, Data Visualization Developer
 
-```bash
-npm run build
-```
+6. **In-house Technical Document System UI/UX Improvement Project**
+   - Duration: 2024.06 ~ Present
+   - Tech: AWS CDK, Lambda, DynamoDB, S3, API Gateway, CloudFront, SvelteKit
+   - Role: AWS CDK-based Full Stack Developer
 
-You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## 🌙 Dark Mode
+
+This project supports dark mode. The theme toggle button is located in the top-right corner of the header.
+
+## 📱 Responsive Design
+
+The layout is optimized for both desktop and mobile views:
+- Desktop: Two project cards per row
+- Mobile: One project card per row
+
+
+
+## 📄 License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+---
+
+Created with ❤️ by Wonny
