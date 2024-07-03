@@ -64,7 +64,7 @@
 					<Card.Content>
 						<div class="grid grid-cols-4 w-auto gap-2 pointer-events-none">
 							<div class="flex flex-col">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
 									<SquareCode class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Frontend
 								</Button>
@@ -73,9 +73,9 @@
 								<Button class="w-fix mt-2" variant="outline">Vue</Button>
 							</div>
 							<div class="flex flex-col ">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted ">
 									<Database class="h-8 w-6 mr-1.5 hidden sm:block" />
-									Data Ops
+									DevOps
 								</Button>
 								<Button class="w-fix mt-2 " variant="outline">AWS&CDK</Button>
 								<Button class="w-fix mt-2 " variant="outline">Airflow</Button>
@@ -83,7 +83,7 @@
 							</div>
 
 							<div class="flex flex-col">
-							<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+							<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
 									<Server class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Backend
 								</Button>
@@ -92,7 +92,7 @@
 							</div>
 
 							<div class="flex flex-col">
-								<Button variant="outline" class="h-auto w-fix bg-neutral-50 ">
+								<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
 									<HandHeart class="h-8 w-6 mr-1.5 hidden sm:block" />
 									Loves
 								</Button>

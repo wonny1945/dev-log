@@ -5,6 +5,10 @@
     import {onMount, onDestroy} from 'svelte';
     import {browser} from '$app/environment'; // 클라이언트 환경 체크
     import type {Unsubscriber} from 'svelte/store';
+    import Sun from "lucide-svelte/icons/sun";
+    import Moon from "lucide-svelte/icons/moon";
+    import {toggleMode} from "mode-watcher";
+    import {Button} from "$lib/components/ui/button/index.js";
 
     // 메뉴 정의
     const menus = [
@@ -49,8 +53,18 @@
 
 
 <div class="flex min-h-screen w-full flex-col">
-    <header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-muted/40 px-4 md:px-6 bg">
+    <header class="sticky top-0 flex h-16 items-center justify-between border-b bg-muted/40 px-4 md:px-6 bg">
         <p class="text-lg font-semibold">Wonny dev-log</p>
+        <div class="flex-grow"></div>
+        <Button on:click={toggleMode} variant="outline" size="icon">
+            <Sun
+                    class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+            />
+            <Moon
+                    class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            />
+            <span class="sr-only">Toggle theme</span>
+        </Button>
     </header>
     <main
             class="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 bg"
