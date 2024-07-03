@@ -70,14 +70,15 @@
             class="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 bg"
     >
         <div class="mx-auto w-full max-w-6xl gap-2 flex flex-col ">
-            <div class="w-11 h-11 animate-bounce ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                    <rect x="10" y="20" width="30" height="20" style="fill:none;stroke:#000000;"/>
-                    <rect x="10" y="10" width="10" height="10" style="fill:none;stroke:#000000;"/>
-                    <rect x="30" y="10" width="10" height="10" style="fill:none;stroke:#000000;"/>
-                    <circle cx="20" cy="30" r="2" style="fill:#000000;"/>
-                    <circle cx="30" cy="30" r="2" style="fill:#000000;"/>
-                    <line x1="20" y1="35" x2="30" y2="35" style="stroke:#000000;"/>
+            <div class="w-11 h-11 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
+                     class="stroke-black fill-none dark:stroke-white">
+                    <rect x="10" y="20" width="30" height="20"/>
+                    <rect x="10" y="10" width="10" height="10"/>
+                    <rect x="30" y="10" width="10" height="10"/>
+                    <circle cx="20" cy="30" r="2" class="fill-black dark:fill-white"/>
+                    <circle cx="30" cy="30" r="2" class="fill-black dark:fill-white"/>
+                    <line x1="20" y1="35" x2="30" y2="35"/>
                 </svg>
             </div>
             <h1 class="text-3xl font-semibold">I'm hop</h1>
