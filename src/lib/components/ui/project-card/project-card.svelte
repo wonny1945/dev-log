@@ -45,40 +45,5 @@
                 <p class="text-sm text-muted-foreground">{work['Key Roles']}</p>
             </div>
         </div>
-
-        <div class="flex justify-center rounded-md">
-            <div class="space-y-1">
-                <Drawer.Root>
-                    <Drawer.Trigger asChild let:builder>
-                        <Button builders={[builder]} variant="outline">Show Screen</Button>
-                    </Drawer.Trigger>
-                    <Drawer.Content class="h-[60vh] max-h-[60vh]">
-                        <div class="mx-auto w-full max-w-4xl h-full flex flex-col">
-                            <Drawer.Header>
-                                <Drawer.Title>Product Screen Shoot</Drawer.Title>
-                                <Drawer.Description>You can see Product or ADR below</Drawer.Description>
-                            </Drawer.Header>
-                            <div class="flex-grow overflow-y-auto">
-                                <div class="overflow-x-auto h-full">
-                                    <div class="flex flex-nowrap gap-4 pb-4">
-                                        {#each work.screenshots as screenshot}
-                                            <img src={base}{screenshot} alt="Project Screenshot"
-                                                 class="h-[40vh] w-auto flex-shrink-0 object-contain rounded shadow hover:shadow-lg transition-shadow duration-300 ease-in-out"/>
-                                        {/each}
-                                    </div>
-                                </div>
-                            </div>
-                            <Drawer.Footer>
-                                <Drawer.Close asChild let:builder>
-                                    <Button builders={[builder]} class="bg-black">Close</Button>
-                                </Drawer.Close>
-                            </Drawer.Footer>
-                        </div>
-                    </Drawer.Content>
-                </Drawer.Root>
-            </div>
-        </div>
-
-
     </Card.Content>
 </Card.Root>
