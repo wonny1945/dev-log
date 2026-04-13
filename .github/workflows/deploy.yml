@@ -2,9 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: 'main'
+    branches: "main"
   pull_request:
-    branches: 'main'
+    branches: "main"
 
 jobs:
   build_site:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         env:
-          BASE_PATH: '/dev-log'
+          BASE_PATH: "/dev-log"
         run: |
           npm run build
 
@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # this should match the `pages` option in your adapter-static options
-          path: 'build/'
+          path: "build/"
 
   deploy:
     if: github.event_name == 'push'

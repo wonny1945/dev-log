@@ -62,6 +62,7 @@ Handled by `mode-watcher`. Toggle button is in the layout header. SVG icons in t
 ## Development Philosophy
 
 ### UI
+
 - **Base:** shadcn-svelte (bits-ui) + TailwindCSS — use existing components first, customize via Tailwind classes and CSS variables rather than replacing.
 - All UI must support dark mode via Tailwind `dark:` variants.
 
@@ -89,6 +90,7 @@ git checkout main && git pull origin main
 브랜치 네이밍: `feat/`, `fix/`, `chore/` 접두사 + kebab-case 스토리명.
 
 ### Workflow
+
 - **Agile stories:** Each feature is broken into small, independently reviewable user stories. Implement and review one story at a time — never batch multiple stories into a single session.
 - **Superpowers:** Use `/brainstorm` before new features, `superpowers:test-driven-development` before writing implementation code, `superpowers:verification-before-completion` before marking any story done.
 - **TDD:** Write the test first, then the implementation. Use Vitest + @testing-library/svelte for component/unit tests.

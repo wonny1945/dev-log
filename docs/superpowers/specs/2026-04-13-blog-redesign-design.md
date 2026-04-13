@@ -19,11 +19,11 @@
 
 ### 기존 → 변경
 
-| 기존 | 변경 | 비고 |
-|------|------|------|
+| 기존      | 변경             | 비고                        |
+| --------- | ---------------- | --------------------------- |
 | `/` About | `/` About (개선) | 프로젝트 미리보기 섹션 추가 |
-| `/Work` | `/projects` | 리네임 + 기능 강화 |
-| 없음 | `/resume` | 신규 |
+| `/Work`   | `/projects`      | 리네임 + 기능 강화          |
+| 없음      | `/resume`        | 신규                        |
 
 ### 네비게이션
 
@@ -112,6 +112,7 @@ Tech Stack: [ Python ] [ Vue ] [ Docker ]
 ### Claude 인터뷰 워크플로우
 
 새 경험/성과가 생겼을 때:
+
 1. 사용자가 Claude에게 간략히 상황 설명
 2. Claude가 인터뷰 질문으로 내용 구체화 (기간, 역할, 사용 기술, 성과 수치 등)
 3. Claude가 `resume.json` 업데이트
@@ -126,8 +127,8 @@ Tech Stack: [ Python ] [ Vue ] [ Docker ]
 `src/lib/stores/language.ts`에 Svelte writable store:
 
 ```ts
-import { writable } from 'svelte/store';
-export const lang = writable<'ko' | 'en'>('ko');
+import { writable } from "svelte/store";
+export const lang = writable<"ko" | "en">("ko");
 ```
 
 헤더에 `KO | EN` 토글 버튼. 외부 i18n 라이브러리 없이 store 직접 활용.
@@ -138,7 +139,7 @@ export const lang = writable<'ko' | 'en'>('ko');
 ---
 title_ko: RPA 자동화 프로젝트
 title_en: RPA Automation Project
-type: work          # work | side
+type: work # work | side
 duration: 2022.01 ~ 2022.03
 overview_ko: 반복 업무 자동화를 통한 경비 처리 효율화
 overview_en: Automated repetitive expense workflows via RPA

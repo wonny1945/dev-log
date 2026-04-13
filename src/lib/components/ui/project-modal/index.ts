@@ -1,1 +1,1 @@
-export { default as ProjectModal } from './ProjectModal.svelte';
+export { default as ProjectModal } from "./ProjectModal.svelte";

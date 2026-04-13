@@ -1,7 +1,7 @@
-import { defineMDSveXConfig as defineConfig } from 'mdsvex';
+import { defineMDSveXConfig as defineConfig } from "mdsvex";
 
 const config = defineConfig({
-  extensions: ['.svelte', '.svx', '.md']
+  extensions: [".svelte", ".svx", ".md"],
 });
 
 export default config;
