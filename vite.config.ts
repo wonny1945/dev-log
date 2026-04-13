@@ -1,12 +1,18 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-    plugins: [sveltekit()],
-    assetsInclude: ['**/*.md'], // 이 줄을 추가합니다.
-    server: {
-        fs: {
-            allow: ['..'] // 이 줄을 추가하여 상위 디렉토리 접근을 허용합니다.
-        }
-    }
+	plugins: [sveltekit()],
+	assetsInclude: ['**/*.md'],
+	server: {
+		fs: {
+			allow: ['..']
+		}
+	},
+	test: {
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		globals: true,
+		environment: 'jsdom',
+		setupFiles: ['src/test/setup.ts']
+	}
 });
