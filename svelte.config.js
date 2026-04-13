@@ -34,6 +34,14 @@ const config = {
 
     prerender: {
       handleMissingId: 'fail',
+      handleHttpError: ({ path, referrer, message }) => {
+        // 외부 링크나 알 수 없는 경로는 무시
+        if (referrer) {
+          console.warn(`Prerender warning: ${message} (linked from ${referrer})`);
+          return;
+        }
+        throw new Error(message);
+      },
       entries: ['*'],
       crawl: true
     }
