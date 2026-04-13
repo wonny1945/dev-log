@@ -1,7 +1,1 @@
-import ProjectCard from "./project-card.svelte"
-
-
-export {
-
-    ProjectCard
-}
+export { default as ProjectCard } from './ProjectCard.svelte';
