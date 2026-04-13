@@ -1,44 +1,64 @@
-// $lib/parseMarkdown.ts
 import { marked } from 'marked';
 
-export interface WorkMetadata {
-    title: string;
-    'Project Duration': string;
-    'Project Overview': string;
-    'Applied Technologies': string;
-    'Key Roles': string;
-    screenshots: string[];
+export interface ProjectMetadata {
+	title_ko: string;
+	title_en: string;
+	type: 'work' | 'side';
+	duration: string;
+	overview_ko: string;
+	overview_en: string;
+	role_ko: string;
+	role_en: string;
+	tech: string;
+	thumbnail: string;
+	screenshots: string[];
 }
 
-export function parseMarkdown(markdown: string): { metadata: WorkMetadata; content: string } {
-    const metadata: Partial<WorkMetadata> = {};
-    const contentLines = markdown.split('\n');
-    let content = '';
-    let inMetadata = false;
+export interface Project extends ProjectMetadata {
+	techList: string[];
+	content: string;
+}
 
-    for (const line of contentLines) {
-        if (line.trim() === '---') {
-            inMetadata = !inMetadata;
-            continue;
-        }
-        if (inMetadata) {
-            const [key, ...valueParts] = line.split(':').map(part => part.trim());
-            const value = valueParts.join(':').trim();
-            if (key && value) {
-                if (key === 'screenshots') {
-                    metadata[key] = JSON.parse(value);
-                } else {
-                    metadata[key as keyof WorkMetadata] = value;
-                }
-            }
-        } else {
-            content += line + '\n';
-        }
-    }
+export function parseMarkdown(markdown: string): {
+	metadata: ProjectMetadata;
+	content: string;
+} {
+	const metadata: Partial<ProjectMetadata> = {};
+	const lines = markdown.split('\n');
+	let content = '';
+	let inFrontmatter = false;
+	let frontmatterDone = false;
+	let dashCount = 0;
 
-    return { metadata: metadata as WorkMetadata, content };
+	for (const line of lines) {
+		if (line.trim() === '---' && dashCount < 2) {
+			dashCount++;
+			inFrontmatter = dashCount === 1;
+			if (dashCount === 2) {
+				inFrontmatter = false;
+				frontmatterDone = true;
+			}
+			continue;
+		}
+		if (inFrontmatter) {
+			const colonIdx = line.indexOf(':');
+			if (colonIdx === -1) continue;
+			const key = line.slice(0, colonIdx).trim();
+			const value = line.slice(colonIdx + 1).trim();
+			if (!key || !value) continue;
+			if (key === 'screenshots') {
+				(metadata as Record<string, unknown>)[key] = JSON.parse(value);
+			} else {
+				(metadata as Record<string, unknown>)[key] = value;
+			}
+		} else if (frontmatterDone) {
+			content += line + '\n';
+		}
+	}
+
+	return { metadata: metadata as ProjectMetadata, content };
 }
 
 export function markdownToHtml(markdown: string): string {
-    return marked(markdown);
+	return marked(markdown) as string;
 }
