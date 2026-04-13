@@ -13,6 +13,7 @@
 ## 파일 구조 (전체)
 
 ### 신규 생성
+
 ```
 src/
   lib/
@@ -42,6 +43,7 @@ src/routes/projects/projects.test.ts   # 필터 로직 유닛 테스트
 ```
 
 ### 수정
+
 ```
 vite.config.ts              # Vitest 설정 추가
 package.json                # vitest, @testing-library/svelte 추가
@@ -59,6 +61,7 @@ src/routes/+layout.ts       # prerender 확인 (현재 true)
 ### Task 1-1: Vitest + Testing Library 설치
 
 **Files:**
+
 - Modify: `package.json`
 - Modify: `vite.config.ts`
 - Create: `src/test/setup.ts`
@@ -74,6 +77,7 @@ Expected: 패키지 설치 완료, `package.json` devDependencies 업데이트.
 - [ ] **Step 2: package.json에 test 스크립트 추가**
 
 `package.json`의 `scripts` 섹션에 추가:
+
 ```json
 "test": "vitest run",
 "test:watch": "vitest"
@@ -82,24 +86,25 @@ Expected: 패키지 설치 완료, `package.json` devDependencies 업데이트.
 - [ ] **Step 3: vite.config.ts 업데이트**
 
 `vite.config.ts`를 아래로 교체:
+
 ```ts
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vitest/config';
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-	plugins: [sveltekit()],
-	assetsInclude: ['**/*.md'],
-	server: {
-		fs: {
-			allow: ['..']
-		}
-	},
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}'],
-		globals: true,
-		environment: 'jsdom',
-		setupFiles: ['src/test/setup.ts']
-	}
+  plugins: [sveltekit()],
+  assetsInclude: ["**/*.md"],
+  server: {
+    fs: {
+      allow: [".."],
+    },
+  },
+  test: {
+    include: ["src/**/*.{test,spec}.{js,ts}"],
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["src/test/setup.ts"],
+  },
 });
 ```
 
@@ -107,7 +112,7 @@ export default defineConfig({
 
 ```ts
 // src/test/setup.ts
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 ```
 
 - [ ] **Step 5: 동작 확인**
@@ -132,34 +137,36 @@ git commit -m "chore: add vitest + testing-library"
 ### Task 2-1: 언어 store 생성
 
 **Files:**
+
 - Create: `src/lib/stores/language.ts`
 - Create: `src/lib/stores/language.test.ts`
 
 - [ ] **Step 1: 실패하는 테스트 작성**
 
 `src/lib/stores/language.test.ts`:
+
 ```ts
-import { get } from 'svelte/store';
-import { lang, toggleLang } from './language';
+import { get } from "svelte/store";
+import { lang, toggleLang } from "./language";
 
-describe('language store', () => {
+describe("language store", () => {
   beforeEach(() => {
-    lang.set('ko');
+    lang.set("ko");
   });
 
-  it('기본값은 ko', () => {
-    expect(get(lang)).toBe('ko');
+  it("기본값은 ko", () => {
+    expect(get(lang)).toBe("ko");
   });
 
-  it('toggleLang: ko → en', () => {
+  it("toggleLang: ko → en", () => {
     toggleLang();
-    expect(get(lang)).toBe('en');
+    expect(get(lang)).toBe("en");
   });
 
-  it('toggleLang: en → ko', () => {
-    lang.set('en');
+  it("toggleLang: en → ko", () => {
+    lang.set("en");
     toggleLang();
-    expect(get(lang)).toBe('ko');
+    expect(get(lang)).toBe("ko");
   });
 });
 ```
@@ -175,14 +182,15 @@ Expected: FAIL — `Cannot find module './language'`
 - [ ] **Step 3: store 구현**
 
 `src/lib/stores/language.ts`:
-```ts
-import { writable } from 'svelte/store';
 
-export type Lang = 'ko' | 'en';
-export const lang = writable<Lang>('ko');
+```ts
+import { writable } from "svelte/store";
+
+export type Lang = "ko" | "en";
+export const lang = writable<Lang>("ko");
 
 export function toggleLang(): void {
-	lang.update((l) => (l === 'ko' ? 'en' : 'ko'));
+  lang.update((l) => (l === "ko" ? "en" : "ko"));
 }
 ```
 
@@ -208,14 +216,16 @@ git commit -m "feat: add KO/EN language store"
 ### Task 3-1: ProjectMetadata 타입 + parseMarkdown 업데이트
 
 **Files:**
+
 - Modify: `src/lib/parseMarkdown.ts`
 - Create: `src/lib/parseMarkdown.test.ts`
 
 - [ ] **Step 1: 실패하는 테스트 작성**
 
 `src/lib/parseMarkdown.test.ts`:
+
 ```ts
-import { parseMarkdown, markdownToHtml } from './parseMarkdown';
+import { parseMarkdown, markdownToHtml } from "./parseMarkdown";
 
 const SAMPLE_MD = `---
 title_ko: 테스트 프로젝트
@@ -232,32 +242,35 @@ screenshots: ["/images/test-1.png", "/images/test-2.png"]
 ---
 본문 내용`;
 
-describe('parseMarkdown', () => {
-  it('새 frontmatter 필드를 파싱한다', () => {
+describe("parseMarkdown", () => {
+  it("새 frontmatter 필드를 파싱한다", () => {
     const { metadata } = parseMarkdown(SAMPLE_MD);
-    expect(metadata.title_ko).toBe('테스트 프로젝트');
-    expect(metadata.title_en).toBe('Test Project');
-    expect(metadata.type).toBe('work');
-    expect(metadata.duration).toBe('2022.01 ~ 2022.03');
-    expect(metadata.overview_ko).toBe('테스트 개요');
-    expect(metadata.role_ko).toBe('FE 개발자');
-    expect(metadata.tech).toBe('Python, Vue, Docker');
-    expect(metadata.thumbnail).toBe('/images/test-thumb.png');
+    expect(metadata.title_ko).toBe("테스트 프로젝트");
+    expect(metadata.title_en).toBe("Test Project");
+    expect(metadata.type).toBe("work");
+    expect(metadata.duration).toBe("2022.01 ~ 2022.03");
+    expect(metadata.overview_ko).toBe("테스트 개요");
+    expect(metadata.role_ko).toBe("FE 개발자");
+    expect(metadata.tech).toBe("Python, Vue, Docker");
+    expect(metadata.thumbnail).toBe("/images/test-thumb.png");
   });
 
-  it('screenshots를 배열로 파싱한다', () => {
+  it("screenshots를 배열로 파싱한다", () => {
     const { metadata } = parseMarkdown(SAMPLE_MD);
-    expect(metadata.screenshots).toEqual(['/images/test-1.png', '/images/test-2.png']);
+    expect(metadata.screenshots).toEqual([
+      "/images/test-1.png",
+      "/images/test-2.png",
+    ]);
   });
 
-  it('본문 컨텐츠를 반환한다', () => {
+  it("본문 컨텐츠를 반환한다", () => {
     const { content } = parseMarkdown(SAMPLE_MD);
-    expect(content.trim()).toBe('본문 내용');
+    expect(content.trim()).toBe("본문 내용");
   });
 
-  it('markdownToHtml: 마크다운을 HTML로 변환한다', () => {
-    const html = markdownToHtml('**bold**');
-    expect(html).toContain('<strong>bold</strong>');
+  it("markdownToHtml: 마크다운을 HTML로 변환한다", () => {
+    const html = markdownToHtml("**bold**");
+    expect(html).toContain("<strong>bold</strong>");
   });
 });
 ```
@@ -273,70 +286,71 @@ Expected: FAIL — 타입 에러 또는 파싱 실패
 - [ ] **Step 3: parseMarkdown.ts 업데이트**
 
 `src/lib/parseMarkdown.ts`를 아래로 교체:
+
 ```ts
-import { marked } from 'marked';
+import { marked } from "marked";
 
 export interface ProjectMetadata {
-	title_ko: string;
-	title_en: string;
-	type: 'work' | 'side';
-	duration: string;
-	overview_ko: string;
-	overview_en: string;
-	role_ko: string;
-	role_en: string;
-	tech: string;
-	thumbnail: string;
-	screenshots: string[];
+  title_ko: string;
+  title_en: string;
+  type: "work" | "side";
+  duration: string;
+  overview_ko: string;
+  overview_en: string;
+  role_ko: string;
+  role_en: string;
+  tech: string;
+  thumbnail: string;
+  screenshots: string[];
 }
 
 export interface Project extends ProjectMetadata {
-	techList: string[];
-	content: string;
+  techList: string[];
+  content: string;
 }
 
 export function parseMarkdown(markdown: string): {
-	metadata: ProjectMetadata;
-	content: string;
+  metadata: ProjectMetadata;
+  content: string;
 } {
-	const metadata: Partial<ProjectMetadata> = {};
-	const lines = markdown.split('\n');
-	let content = '';
-	let inFrontmatter = false;
-	let frontmatterDone = false;
-	let dashCount = 0;
+  const metadata: Partial<ProjectMetadata> = {};
+  const lines = markdown.split("\n");
+  let content = "";
+  let inFrontmatter = false;
+  let frontmatterDone = false;
+  let dashCount = 0;
 
-	for (const line of lines) {
-		if (line.trim() === '---' && dashCount < 2) {
-			dashCount++;
-			inFrontmatter = dashCount === 1;
-			if (dashCount === 2) {
-				inFrontmatter = false;
-				frontmatterDone = true;
-			}
-			continue;
-		}
-		if (inFrontmatter) {
-			const colonIdx = line.indexOf(':');
-			if (colonIdx === -1) continue;
-			const key = line.slice(0, colonIdx).trim();
-			const value = line.slice(colonIdx + 1).trim();
-			if (!key || !value) continue;
-			if (key === 'screenshots') {
-				(metadata as Record<string, unknown>)[key] = JSON.parse(value);
-			} else {
-				(metadata as Record<string, unknown>)[key] = value;
-			}
-		} else if (frontmatterDone) {
-			content += line + '\n';
-		}
-	}
+  for (const line of lines) {
+    if (line.trim() === "---" && dashCount < 2) {
+      dashCount++;
+      inFrontmatter = dashCount === 1;
+      if (dashCount === 2) {
+        inFrontmatter = false;
+        frontmatterDone = true;
+      }
+      continue;
+    }
+    if (inFrontmatter) {
+      const colonIdx = line.indexOf(":");
+      if (colonIdx === -1) continue;
+      const key = line.slice(0, colonIdx).trim();
+      const value = line.slice(colonIdx + 1).trim();
+      if (!key || !value) continue;
+      if (key === "screenshots") {
+        (metadata as Record<string, unknown>)[key] = JSON.parse(value);
+      } else {
+        (metadata as Record<string, unknown>)[key] = value;
+      }
+    } else if (frontmatterDone) {
+      content += line + "\n";
+    }
+  }
 
-	return { metadata: metadata as ProjectMetadata, content };
+  return { metadata: metadata as ProjectMetadata, content };
 }
 
 export function markdownToHtml(markdown: string): string {
-	return marked(markdown) as string;
+  return marked(markdown) as string;
 }
 ```
 
@@ -368,6 +382,7 @@ git commit -m "feat: update parseMarkdown to ProjectMetadata with ko/en + type f
 ### Task 3-2: 기존 마크다운 파일 6개 frontmatter 마이그레이션
 
 **Files:**
+
 - Modify: `src/lib/mdfiles/RPAPROJECT.md`
 - Modify: `src/lib/mdfiles/INSPECTION.md`
 - Modify: `src/lib/mdfiles/KEYNEWSPROJECT.md`
@@ -381,6 +396,7 @@ git commit -m "feat: update parseMarkdown to ProjectMetadata with ko/en + type f
 - [ ] **Step 1: RPAPROJECT.md frontmatter 교체**
 
 frontmatter를:
+
 ```yaml
 ---
 title_ko: 경비 처리 자동화 웹 애플리케이션
@@ -501,67 +517,69 @@ git commit -m "chore: migrate md frontmatter to bilingual ProjectMetadata format
 ### Task 4-1: load() 함수로 빌드타임 프리렌더
 
 **Files:**
+
 - Create: `src/routes/projects/+page.ts`
 - Create: `src/routes/projects/projects.test.ts`
 
 - [ ] **Step 1: 유틸 함수 테스트 작성 (정렬 로직)**
 
 `src/routes/projects/projects.test.ts`:
+
 ```ts
-import { sortByDuration, filterProjects } from './utils';
-import type { Project } from '$lib/parseMarkdown';
+import { sortByDuration, filterProjects } from "./utils";
+import type { Project } from "$lib/parseMarkdown";
 
-const makeProject = (duration: string, type: 'work' | 'side'): Project => ({
-	title_ko: '테스트',
-	title_en: 'Test',
-	type,
-	duration,
-	overview_ko: '',
-	overview_en: '',
-	role_ko: '',
-	role_en: '',
-	tech: '',
-	thumbnail: '',
-	screenshots: [],
-	techList: [],
-	content: ''
+const makeProject = (duration: string, type: "work" | "side"): Project => ({
+  title_ko: "테스트",
+  title_en: "Test",
+  type,
+  duration,
+  overview_ko: "",
+  overview_en: "",
+  role_ko: "",
+  role_en: "",
+  tech: "",
+  thumbnail: "",
+  screenshots: [],
+  techList: [],
+  content: "",
 });
 
-describe('sortByDuration', () => {
-	it('종료일 기준 내림차순 정렬', () => {
-		const projects = [
-			makeProject('2021.03 ~ 2021.06', 'work'),
-			makeProject('2024.06 ~', 'work'),
-			makeProject('2022.01 ~ 2022.03', 'work')
-		];
-		const sorted = sortByDuration(projects);
-		expect(sorted[0].duration).toBe('2024.06 ~');
-		expect(sorted[1].duration).toBe('2022.01 ~ 2022.03');
-		expect(sorted[2].duration).toBe('2021.03 ~ 2021.06');
-	});
+describe("sortByDuration", () => {
+  it("종료일 기준 내림차순 정렬", () => {
+    const projects = [
+      makeProject("2021.03 ~ 2021.06", "work"),
+      makeProject("2024.06 ~", "work"),
+      makeProject("2022.01 ~ 2022.03", "work"),
+    ];
+    const sorted = sortByDuration(projects);
+    expect(sorted[0].duration).toBe("2024.06 ~");
+    expect(sorted[1].duration).toBe("2022.01 ~ 2022.03");
+    expect(sorted[2].duration).toBe("2021.03 ~ 2021.06");
+  });
 });
 
-describe('filterProjects', () => {
-	const projects = [
-		makeProject('2022.01 ~ 2022.03', 'work'),
-		makeProject('2023.01 ~', 'side')
-	];
+describe("filterProjects", () => {
+  const projects = [
+    makeProject("2022.01 ~ 2022.03", "work"),
+    makeProject("2023.01 ~", "side"),
+  ];
 
-	it('all: 전체 반환', () => {
-		expect(filterProjects(projects, 'all')).toHaveLength(2);
-	});
+  it("all: 전체 반환", () => {
+    expect(filterProjects(projects, "all")).toHaveLength(2);
+  });
 
-	it('work: work만 반환', () => {
-		const result = filterProjects(projects, 'work');
-		expect(result).toHaveLength(1);
-		expect(result[0].type).toBe('work');
-	});
+  it("work: work만 반환", () => {
+    const result = filterProjects(projects, "work");
+    expect(result).toHaveLength(1);
+    expect(result[0].type).toBe("work");
+  });
 
-	it('side: side만 반환', () => {
-		const result = filterProjects(projects, 'side');
-		expect(result).toHaveLength(1);
-		expect(result[0].type).toBe('side');
-	});
+  it("side: side만 반환", () => {
+    const result = filterProjects(projects, "side");
+    expect(result).toHaveLength(1);
+    expect(result[0].type).toBe("side");
+  });
 });
 ```
 
@@ -576,28 +594,32 @@ Expected: FAIL — `Cannot find module './utils'`
 - [ ] **Step 3: utils.ts 생성**
 
 `src/routes/projects/utils.ts`:
-```ts
-import type { Project } from '$lib/parseMarkdown';
 
-export type FilterType = 'all' | 'work' | 'side';
+```ts
+import type { Project } from "$lib/parseMarkdown";
+
+export type FilterType = "all" | "work" | "side";
 
 function getEndDate(duration: string): string {
-	if (duration.includes('~')) {
-		const end = duration.split('~')[1].trim();
-		return end === '' ? '9999.99' : end; // 진행 중 → 가장 최신으로
-	}
-	return duration;
+  if (duration.includes("~")) {
+    const end = duration.split("~")[1].trim();
+    return end === "" ? "9999.99" : end; // 진행 중 → 가장 최신으로
+  }
+  return duration;
 }
 
 export function sortByDuration(projects: Project[]): Project[] {
-	return [...projects].sort((a, b) =>
-		getEndDate(b.duration).localeCompare(getEndDate(a.duration))
-	);
+  return [...projects].sort((a, b) =>
+    getEndDate(b.duration).localeCompare(getEndDate(a.duration)),
+  );
 }
 
-export function filterProjects(projects: Project[], filter: FilterType): Project[] {
-	if (filter === 'all') return projects;
-	return projects.filter((p) => p.type === filter);
+export function filterProjects(
+  projects: Project[],
+  filter: FilterType,
+): Project[] {
+  if (filter === "all") return projects;
+  return projects.filter((p) => p.type === filter);
 }
 ```
 
@@ -612,29 +634,33 @@ Expected: PASS (5 tests)
 - [ ] **Step 5: +page.ts 생성**
 
 `src/routes/projects/+page.ts`:
+
 ```ts
-import { parseMarkdown, markdownToHtml } from '$lib/parseMarkdown';
-import type { Project } from '$lib/parseMarkdown';
-import { sortByDuration } from './utils';
-import type { PageLoad } from './$types';
+import { parseMarkdown, markdownToHtml } from "$lib/parseMarkdown";
+import type { Project } from "$lib/parseMarkdown";
+import { sortByDuration } from "./utils";
+import type { PageLoad } from "./$types";
 
 export const prerender = true;
 
 export const load: PageLoad = async () => {
-	const files = import.meta.glob('$lib/mdfiles/*.md', { as: 'raw', eager: false });
-	const projects: Project[] = [];
+  const files = import.meta.glob("$lib/mdfiles/*.md", {
+    as: "raw",
+    eager: false,
+  });
+  const projects: Project[] = [];
 
-	for (const path in files) {
-		const raw = (await files[path]()) as string;
-		const { metadata, content } = parseMarkdown(raw);
-		projects.push({
-			...metadata,
-			techList: metadata.tech.split(',').map((t) => t.trim()),
-			content: markdownToHtml(content)
-		});
-	}
+  for (const path in files) {
+    const raw = (await files[path]()) as string;
+    const { metadata, content } = parseMarkdown(raw);
+    projects.push({
+      ...metadata,
+      techList: metadata.tech.split(",").map((t) => t.trim()),
+      content: markdownToHtml(content),
+    });
+  }
 
-	return { projects: sortByDuration(projects) };
+  return { projects: sortByDuration(projects) };
 };
 ```
 
@@ -650,12 +676,14 @@ git commit -m "feat: add projects load() with build-time prerender + sort/filter
 ### Task 4-2: ProjectCard 컴포넌트
 
 **Files:**
+
 - Create: `src/lib/components/ui/project-card/ProjectCard.svelte`
 - Create: `src/lib/components/ui/project-card/index.ts`
 
 - [ ] **Step 1: ProjectCard.svelte 생성**
 
 `src/lib/components/ui/project-card/ProjectCard.svelte`:
+
 ```svelte
 <script lang="ts">
 	import { lang } from '$lib/stores/language';
@@ -725,8 +753,9 @@ git commit -m "feat: add projects load() with build-time prerender + sort/filter
 ```
 
 `src/lib/components/ui/project-card/index.ts`:
+
 ```ts
-export { default as ProjectCard } from './ProjectCard.svelte';
+export { default as ProjectCard } from "./ProjectCard.svelte";
 ```
 
 - [ ] **Step 2: 타입 체크**
@@ -749,12 +778,14 @@ git commit -m "feat: add redesigned ProjectCard component"
 ### Task 4-3: ProjectModal 컴포넌트
 
 **Files:**
+
 - Create: `src/lib/components/ui/project-modal/ProjectModal.svelte`
 - Create: `src/lib/components/ui/project-modal/index.ts`
 
 - [ ] **Step 1: ProjectModal.svelte 생성**
 
 `src/lib/components/ui/project-modal/ProjectModal.svelte`:
+
 ```svelte
 <script lang="ts">
 	import { lang } from '$lib/stores/language';
@@ -856,8 +887,9 @@ git commit -m "feat: add redesigned ProjectCard component"
 ```
 
 `src/lib/components/ui/project-modal/index.ts`:
+
 ```ts
-export { default as ProjectModal } from './ProjectModal.svelte';
+export { default as ProjectModal } from "./ProjectModal.svelte";
 ```
 
 - [ ] **Step 2: 타입 체크**
@@ -880,11 +912,13 @@ git commit -m "feat: add ProjectModal with embla image slider"
 ### Task 4-4: Projects 페이지 UI (`/projects`)
 
 **Files:**
+
 - Create: `src/routes/projects/+page.svelte`
 
 - [ ] **Step 1: +page.svelte 생성**
 
 `src/routes/projects/+page.svelte`:
+
 ```svelte
 <script lang="ts">
 	import type { PageData } from './$types';
@@ -950,6 +984,7 @@ git commit -m "feat: add ProjectModal with embla image slider"
 - [ ] **Step 2: 기존 /Work 라우트 제거 및 리다이렉트**
 
 `src/routes/Work/+page.svelte`를 아래로 교체 (리다이렉트):
+
 ```svelte
 <script lang="ts">
 	import { goto } from '$app/navigation';
@@ -969,6 +1004,7 @@ npm run dev
 ```
 
 브라우저에서 `http://localhost:5173/projects` 열어 확인:
+
 - 카드 그리드 즉시 렌더 (로딩 없음)
 - 필터 탭 동작
 - 카드 클릭 시 모달 오픈
@@ -987,11 +1023,13 @@ git commit -m "feat: projects page with filter tabs + modal"
 ### Task 5-1: 레이아웃 업데이트
 
 **Files:**
+
 - Modify: `src/routes/+layout.svelte`
 
 - [ ] **Step 1: +layout.svelte 업데이트**
 
 `src/routes/+layout.svelte`의 `<script>` 블록에 추가:
+
 ```svelte
 <script lang="ts">
 	// 기존 import 유지 ...
@@ -1007,6 +1045,7 @@ git commit -m "feat: projects page with filter tabs + modal"
 ```
 
 헤더에 KO/EN 토글 버튼 추가 (다크모드 버튼 옆):
+
 ```svelte
 <!-- KO/EN 토글 -->
 <Button variant="outline" size="sm" on:click={toggleLang} class="text-xs font-semibold">
@@ -1015,6 +1054,7 @@ git commit -m "feat: projects page with filter tabs + modal"
 ```
 
 사이드 네비 링크 업데이트:
+
 ```svelte
 {#each menus as menu}
 	<a
@@ -1054,41 +1094,47 @@ git commit -m "feat: update nav with Projects/Resume + KO/EN toggle"
 ### Task 6-1: About 페이지에 load() + 프로젝트 미리보기 추가
 
 **Files:**
+
 - Create: `src/routes/+page.ts`
 - Modify: `src/routes/+page.svelte`
 
 - [ ] **Step 1: +page.ts 생성**
 
 `src/routes/+page.ts`:
+
 ```ts
-import { parseMarkdown, markdownToHtml } from '$lib/parseMarkdown';
-import type { Project } from '$lib/parseMarkdown';
-import { sortByDuration } from './projects/utils';
-import type { PageLoad } from './$types';
+import { parseMarkdown, markdownToHtml } from "$lib/parseMarkdown";
+import type { Project } from "$lib/parseMarkdown";
+import { sortByDuration } from "./projects/utils";
+import type { PageLoad } from "./$types";
 
 export const prerender = true;
 
 export const load: PageLoad = async () => {
-	const files = import.meta.glob('$lib/mdfiles/*.md', { as: 'raw', eager: false });
-	const projects: Project[] = [];
+  const files = import.meta.glob("$lib/mdfiles/*.md", {
+    as: "raw",
+    eager: false,
+  });
+  const projects: Project[] = [];
 
-	for (const path in files) {
-		const raw = (await files[path]()) as string;
-		const { metadata, content } = parseMarkdown(raw);
-		projects.push({
-			...metadata,
-			techList: metadata.tech.split(',').map((t) => t.trim()),
-			content: markdownToHtml(content)
-		});
-	}
+  for (const path in files) {
+    const raw = (await files[path]()) as string;
+    const { metadata, content } = parseMarkdown(raw);
+    projects.push({
+      ...metadata,
+      techList: metadata.tech.split(",").map((t) => t.trim()),
+      content: markdownToHtml(content),
+    });
+  }
 
-	return { recentProjects: sortByDuration(projects).slice(0, 3) };
+  return { recentProjects: sortByDuration(projects).slice(0, 3) };
 };
 ```
 
 - [ ] **Step 2: +page.svelte 하단에 프로젝트 미리보기 섹션 추가**
 
 `src/routes/+page.svelte`의 `<script>` 블록에 추가:
+
 ```svelte
 <script lang="ts">
 	// 기존 import 유지 ...
@@ -1111,6 +1157,7 @@ export const load: PageLoad = async () => {
 ```
 
 기존 마지막 `</div>` 앞에 섹션 추가:
+
 ```svelte
 <!-- 최근 프로젝트 미리보기 -->
 <Card.Root>
@@ -1171,11 +1218,13 @@ git commit -m "feat: add recent projects preview section to About page"
 > ⚠️ 이 Task는 Claude와 인터뷰를 통해 내용을 채운다. 아래 구조에 실제 데이터를 채워 넣을 것.
 
 **Files:**
+
 - Create: `src/lib/data/resume.json`
 
 - [ ] **Step 1: 빈 resume.json 구조 생성**
 
 `src/lib/data/resume.json`:
+
 ```json
 {
   "name_ko": "원준일",
@@ -1226,6 +1275,7 @@ git commit -m "feat: add recent projects preview section to About page"
 - [ ] **Step 2: Claude 인터뷰로 실제 내용 채우기**
 
 아래 항목을 Claude에게 순서대로 알려주면 Claude가 resume.json을 업데이트:
+
 - 회사명 / 팀 / 재직 기간
 - 각 역할별 주요 성과 (수치 포함)
 - 학력
@@ -1242,26 +1292,29 @@ git commit -m "feat: add resume.json data"
 ### Task 7-2: Resume 페이지 UI
 
 **Files:**
+
 - Create: `src/routes/resume/+page.ts`
 - Create: `src/routes/resume/+page.svelte`
 
 - [ ] **Step 1: +page.ts 생성**
 
 `src/routes/resume/+page.ts`:
+
 ```ts
-import type { PageLoad } from './$types';
-import resumeData from '$lib/data/resume.json';
+import type { PageLoad } from "./$types";
+import resumeData from "$lib/data/resume.json";
 
 export const prerender = true;
 
 export const load: PageLoad = () => {
-	return { resume: resumeData };
+  return { resume: resumeData };
 };
 ```
 
 - [ ] **Step 2: +page.svelte 생성**
 
 `src/routes/resume/+page.svelte`:
+
 ```svelte
 <script lang="ts">
 	import type { PageData } from './$types';
@@ -1400,6 +1453,7 @@ npm run dev
 ```
 
 `http://localhost:5173/resume` 에서:
+
 - KO/EN 토글 동작
 - "PDF 저장" 버튼 클릭 시 브라우저 인쇄 다이얼로그 열림
 
@@ -1455,6 +1509,7 @@ npm run build && npm run preview
 ```
 
 `http://localhost:4173` 에서 전체 동작 확인:
+
 - `/` About — 최근 프로젝트 미리보기 즉시 렌더
 - `/projects` — 필터 탭, 카드 클릭 → 모달
 - `/resume` — KO/EN 전환, PDF 버튼

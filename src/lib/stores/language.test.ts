@@ -1,23 +1,23 @@
-import { get } from 'svelte/store';
-import { lang, toggleLang } from './language';
+import { get } from "svelte/store";
+import { lang, toggleLang } from "./language";
 
-describe('language store', () => {
+describe("language store", () => {
   beforeEach(() => {
-    lang.set('ko');
+    lang.set("ko");
   });
 
-  it('기본값은 ko', () => {
-    expect(get(lang)).toBe('ko');
+  it("기본값은 ko", () => {
+    expect(get(lang)).toBe("ko");
   });
 
-  it('toggleLang: ko → en', () => {
+  it("toggleLang: ko → en", () => {
     toggleLang();
-    expect(get(lang)).toBe('en');
+    expect(get(lang)).toBe("en");
   });
 
-  it('toggleLang: en → ko', () => {
-    lang.set('en');
+  it("toggleLang: en → ko", () => {
+    lang.set("en");
     toggleLang();
-    expect(get(lang)).toBe('ko');
+    expect(get(lang)).toBe("ko");
   });
 });
