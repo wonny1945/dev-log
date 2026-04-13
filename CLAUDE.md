@@ -65,8 +65,31 @@ Handled by `mode-watcher`. Toggle button is in the layout header. SVG icons in t
 - **Base:** shadcn-svelte (bits-ui) + TailwindCSS — use existing components first, customize via Tailwind classes and CSS variables rather than replacing.
 - All UI must support dark mode via Tailwind `dark:` variants.
 
+### Git Workflow (per story)
+
+Every story follows this exact lifecycle — no exceptions:
+
+```bash
+# 1. 스토리 시작 전: main 최신화 후 브랜치 생성
+git checkout main && git pull origin main
+git checkout -b feat/<story-name>   # e.g. feat/language-store
+
+# 2. 스토리 구현 (TDD 사이클, 잦은 커밋)
+
+# 3. 스토리 완료 후: PR 생성
+gh pr create --title "feat: <story-name>" --body "..."
+
+# 4. 사용자 리뷰 후 머지
+gh pr merge <PR번호> --squash
+
+# 5. 다음 스토리 시작 전 main으로 복귀 후 반복
+git checkout main && git pull origin main
+```
+
+브랜치 네이밍: `feat/`, `fix/`, `chore/` 접두사 + kebab-case 스토리명.
+
 ### Workflow
 - **Agile stories:** Each feature is broken into small, independently reviewable user stories. Implement and review one story at a time — never batch multiple stories into a single session.
 - **Superpowers:** Use `/brainstorm` before new features, `superpowers:test-driven-development` before writing implementation code, `superpowers:verification-before-completion` before marking any story done.
 - **TDD:** Write the test first, then the implementation. Use Vitest + @testing-library/svelte for component/unit tests.
-- **Review cadence:** After each story is implemented, show the result in the browser before moving to the next story.
+- **Review cadence:** After each story is implemented, show the result in the browser and create a PR before moving to the next story.
