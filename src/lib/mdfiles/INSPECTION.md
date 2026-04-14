@@ -1,13 +1,15 @@
 ---
-title_ko: 설비 점검 프로세스 개선 프로젝트
-title_en: Equipment Inspection Process Improvement Project
-type: work
-duration: 2022.03 ~ 2022.06
-overview_ko: 발전소의 종이 기반 설비 점검 프로세스를 디지털화하여 업무 효율 향상
-overview_en: Digitalized paper-based equipment inspection process in power plants
-role_ko: 풀스택 개발자
-role_en: Full Stack Developer
-tech: JavaScript, HTML, CSS, Vue, Vuetify, Python, Django DRF, Pandas
+title_ko: 배출물질 관리 및 센서 건전성 AI 모니터링
+title_en: Emissions Management and Sensor Health AI Monitoring
+category: 개발
+tags: 개발
+duration: 2022.01 ~ 2022.12
+overview_ko: XGBoost 이상감지 모델 + Streamlit 대시보드. 분산된 배출물질 데이터 통합. 연 2-4회 조기 감지.
+overview_en: XGBoost anomaly detection + Streamlit dashboard. Integrated dispersed emissions data. 2-4 early detections/year.
+role_ko: Data Engineer
+role_en: Data Engineer
+tech: XGBoost, Streamlit, Python, Pandas
+achievement: 연 2-4회 조기감지
 thumbnail: ""
 screenshots: []
 ---

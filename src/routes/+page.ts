@@ -18,6 +18,9 @@ export const load: PageLoad = async () => {
     projects.push({
       ...metadata,
       techList: metadata.tech.split(",").map((t) => t.trim()),
+      tagList: metadata.tags
+        ? metadata.tags.split(",").map((t) => t.trim())
+        : [],
       content: markdownToHtml(content),
     });
   }

@@ -3,13 +3,15 @@ import { parseMarkdown, markdownToHtml } from "./parseMarkdown";
 const SAMPLE_MD = `---
 title_ko: 테스트 프로젝트
 title_en: Test Project
-type: work
+category: 개발
+tags: 개발, 발표
 duration: 2022.01 ~ 2022.03
 overview_ko: 테스트 개요
 overview_en: Test overview
 role_ko: FE 개발자
 role_en: FE Developer
 tech: Python, Vue, Docker
+achievement: 80% 시간 단축
 thumbnail: /images/test-thumb.png
 screenshots: ["/images/test-1.png", "/images/test-2.png"]
 ---
@@ -20,7 +22,8 @@ describe("parseMarkdown", () => {
     const { metadata } = parseMarkdown(SAMPLE_MD);
     expect(metadata.title_ko).toBe("테스트 프로젝트");
     expect(metadata.title_en).toBe("Test Project");
-    expect(metadata.type).toBe("work");
+    expect(metadata.category).toBe("개발");
+    expect(metadata.tags).toBe("개발, 발표");
     expect(metadata.duration).toBe("2022.01 ~ 2022.03");
     expect(metadata.overview_ko).toBe("테스트 개요");
     expect(metadata.role_ko).toBe("FE 개발자");
