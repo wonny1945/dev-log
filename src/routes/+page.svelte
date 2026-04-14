@@ -1,187 +1,252 @@
 <script lang="ts">
-	import Github from 'lucide-svelte/icons/github';
-	import Linkedin from 'lucide-svelte/icons/linkedin';
-	import Mail from 'lucide-svelte/icons/mail';
-	import { SquareCode } from 'lucide-svelte';
-	import { Server } from 'lucide-svelte';
-	import { Database } from 'lucide-svelte';
-	import { HandHeart } from 'lucide-svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Separator } from '$lib/components/ui/separator';
-	import * as Card from '$lib/components/ui/card/index.js';
-	import { base } from '$app/paths';
-	import { ProjectCard } from '$lib/components/ui/project-card';
-	import { ProjectModal } from '$lib/components/ui/project-modal';
-	import { lang } from '$lib/stores/language';
-	import type { PageData } from './$types';
-	import type { Project } from '$lib/parseMarkdown';
+  import { lang } from '$lib/stores/language';
+  import { base } from '$app/paths';
+  import { Separator } from '$lib/components/ui/separator';
+  import { Button } from '$lib/components/ui/button';
+  import Printer from 'lucide-svelte/icons/printer';
 
-	export let data: PageData;
+  function printPage() {
+    if (typeof window !== 'undefined') window.print();
+  }
 
-	let selectedProject: Project | null = null;
-	let modalOpen = false;
+  const whatIDo = [
+    {
+      ko: {
+        title: 'Cloud Full Stack 개발',
+        desc: 'AWS 기반 서버리스 아키텍처, CI/CD, 프론트엔드부터 인프라까지'
+      },
+      en: {
+        title: 'Cloud Full Stack Development',
+        desc: 'AWS serverless architecture, CI/CD, from frontend to infrastructure'
+      }
+    },
+    {
+      ko: {
+        title: 'DX/AX 전환 리딩',
+        desc: '현장 Pain Point 발굴 → PoC → 도입까지 End-to-End PM'
+      },
+      en: {
+        title: 'DX/AX Transformation Lead',
+        desc: 'Field Pain Point discovery → PoC → adoption, End-to-End PM'
+      }
+    },
+    {
+      ko: {
+        title: '데이터 파이프라인 & MLOps',
+        desc: '발전소 운영 데이터 ETL, 이상감지, 실시간 모니터링'
+      },
+      en: {
+        title: 'Data Pipeline & MLOps',
+        desc: 'Power plant operational data ETL, anomaly detection, real-time monitoring'
+      }
+    }
+  ];
 
-	function openModal(project: Project) {
-		selectedProject = project;
-		modalOpen = true;
-	}
+  const selectedWork = [
+    {
+      ko: { title: '사내 기술자료 시스템', achievement: '사용자 활용도 800% ↑' },
+      en: { title: 'Technical Document System', achievement: 'User adoption +800%' }
+    },
+    {
+      ko: { title: 'Bottom Ash 분석 자동화', achievement: '운영비 44% 절감' },
+      en: { title: 'Bottom Ash Analysis Automation', achievement: '44% cost reduction' }
+    },
+    {
+      ko: { title: '조기경보 Siren-X 도입', achievement: '24건/연 조기감지' },
+      en: { title: 'Early Warning Siren-X', achievement: '24 cases/year early detection' }
+    }
+  ];
+
+  // NOTE: Replace url values with actual Medium series/post URLs when ready.
+  // Series URL format: https://medium.com/@wonny1945/list/<series-name>
+  // Currently set to profile link as placeholder.
+  const writing = [
+    {
+      ko: 'AWS CDK로 서버리스 구축한 이야기',
+      en: 'How I Built a Serverless System with AWS CDK',
+      url: 'https://medium.com/@wonny1945'
+    },
+    {
+      ko: '발전소 데이터를 실시간으로 분석하기까지',
+      en: 'Building Real-time Power Plant Data Analytics',
+      url: 'https://medium.com/@wonny1945'
+    }
+  ];
+
+  const career = [
+    {
+      ko: {
+        company: 'GS EPS · DX솔루션팀 매니저',
+        desc: 'Cloud Full Stack 개발, MLOps, DX 솔루션 발굴'
+      },
+      en: {
+        company: 'GS EPS · DX Solution Team Manager',
+        desc: 'Cloud Full Stack Development, MLOps, DX Solution Discovery'
+      },
+      period: '2020.07 – 현재'
+    },
+    {
+      ko: {
+        company: 'GS EPS · 바이오운전팀',
+        desc: 'CFBC 바이오매스 발전소 현장 운영 및 관리'
+      },
+      en: {
+        company: 'GS EPS · Bio-Operations Team',
+        desc: 'CFBC Biomass Power Plant operations and management'
+      },
+      period: '2014.01 – 2020.07'
+    }
+  ];
+
+  const education = {
+    ko: 'KAIST 소프트웨어 대학원 석사 · 고려사이버대 AI&Data 학사 · 항공폴리텍 항공전자',
+    en: 'KAIST Graduate School of Software (M.S.) · Korea Cyber Univ. AI & Data (B.S.) · KAAT Aviation Electronics'
+  };
+
+  const certifications = {
+    ko: 'SQLD · 에너지관리기사 · 산업안전기사',
+    en: 'SQLD · Energy Management Engineer · Industrial Safety Engineer'
+  };
 </script>
 
-<div class="grid gap-6">
-	<h3 class="text-3xl font-bold tracking-tight">Hello I'm Wonny</h3>
-	<Separator class="-mt-3" />
-	<Card.Root>
-		<Card.Header>
-			<Card.Title class="text-2xl">I'm a pragmatic developer 🧑‍💻</Card.Title>
-			<Card.Description>
-				I am not tied to specific languages or technologies, but focus on how to think about and solve problems.
-				<br />Beyond just writing software that works, I strive to create software that is maintainable and can
-				adapt as the world changes.
-			</Card.Description>
-		</Card.Header>
-		<Card.Content>
-			<Card.Title class="text-2xl">Also, I'm a subject matter expert in power plant 🏭</Card.Title>
-			<Card.Description>
-				I have special experience in operating and managing CFBC type biomass power plants, and possess knowledge
-				in the domain of general power plant and digital transformation.
-			</Card.Description>
-		</Card.Content>
-		<Card.Footer class="border-t px-6 py-2 justify-end gap-1">
-			<Button variant="outline">
-				<a href="https://github.com/wonny1945" rel="prefetch" class="flex items-center">
-					<Github class="mr-2 h-4 w-4" />
-					GitHub
-				</a></Button>
-			<Button variant="outline">
-				<a href="https://www.linkedin.com/in/%EC%A4%80%EC%9D%BC-%EC%9B%90-58975525b/" rel="prefetch"
-					class="flex items-center">
-					<Linkedin class="mr-2 h-4 w-4" />
-					LinkedIn
-				</a>
-			</Button>
-			<Button variant="outline">
-				<a href="mailto:wonny1945@gmail.com" class="flex items-center">
-					<Mail class="mr-2 h-4 w-4" />
-					Mail
-				</a>
-			</Button>
-		</Card.Footer>
-	</Card.Root>
+<svelte:head>
+  <style>
+    @media print {
+      header, .no-print { display: none !important; }
+    }
+  </style>
+</svelte:head>
 
-	<Card.Root>
-		<Card.Header>
-			<Card.Title class="text-2xl">Skills & Works</Card.Title>
-			<Card.Description>
-				I am a developer, data engineer, and problem solver with the following skills.
-				<br/>
-			</Card.Description>
-		</Card.Header>
-		<Card.Content>
-			<div class="grid grid-cols-4 w-auto gap-2 pointer-events-none">
-				<div class="flex flex-col">
-					<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
-						<SquareCode class="h-8 w-6 mr-1.5 hidden sm:block" />
-						Frontend
-					</Button>
-					<Button class="w-fix mt-2 " variant="outline">Javascript</Button>
-					<Button class="w-fix mt-2" variant="outline">Sveltekit</Button>
-					<Button class="w-fix mt-2" variant="outline">Vue</Button>
-				</div>
-				<div class="flex flex-col ">
-					<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted ">
-						<Database class="h-8 w-6 mr-1.5 hidden sm:block" />
-						DevOps
-					</Button>
-					<Button class="w-fix mt-2 " variant="outline">AWS&CDK</Button>
-					<Button class="w-fix mt-2 " variant="outline">Airflow</Button>
-					<Button class="w-fix mt-2 " variant="outline">Streamlit</Button>
-				</div>
+<div class="grid gap-12">
 
-				<div class="flex flex-col">
-					<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
-						<Server class="h-8 w-6 mr-1.5 hidden sm:block" />
-						Backend
-					</Button>
-					<Button class="w-fix mt-2 " variant="outline">Python</Button>
-					<Button class="w-fix mt-2 " variant="outline">Django</Button>
-				</div>
+  <!-- Hero -->
+  <section class="pt-4">
+    <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      PRAGMATIC DEVELOPER · CLOUD FULL STACK · DX/AX
+    </p>
+    <h1 class="mb-3 text-4xl font-black tracking-tight">
+      {$lang === 'ko' ? '원준일 (Wonny Won)' : 'Wonny Won (원준일)'}
+    </h1>
+    <p class="mb-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+      {#if $lang === 'ko'}
+        발전소 현장 6년 + DX팀 5년 —<br />
+        현장 문제를 직접 코드로 풀어온 엔지니어입니다.<br />
+        기획부터 배포까지 혼자 끌고 갑니다.
+      {:else}
+        6 years in power plant operations + 5 years in DX team —<br />
+        an engineer who solves field problems directly with code.<br />
+        From planning to deployment, end-to-end.
+      {/if}
+    </p>
+    <div class="no-print flex flex-wrap gap-2">
+      <Button variant="outline" size="sm" href="https://github.com/wonny1945" target="_blank" rel="noopener noreferrer">
+        GitHub
+      </Button>
+      <Button variant="outline" size="sm" href="https://linkedin.com/in/준일-원-58975525b" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </Button>
+      <Button variant="outline" size="sm" href="https://zdnet.co.kr/view/?no=20251111113533" target="_blank" rel="noopener noreferrer">
+        {$lang === 'ko' ? 'ZDNet 인터뷰' : 'ZDNet Interview'}
+      </Button>
+      <Button variant="outline" size="sm" on:click={printPage}>
+        <Printer class="mr-1.5 h-3.5 w-3.5" />
+        {$lang === 'ko' ? 'PDF 저장' : 'Save PDF'}
+      </Button>
+    </div>
+  </section>
 
-				<div class="flex flex-col">
-					<Button variant="outline" class="h-auto w-fix bg-neutral-50 dark:bg-muted">
-						<HandHeart class="h-8 w-6 mr-1.5 hidden sm:block" />
-						Loves
-					</Button>
-					<Button class="w-fix mt-2 " variant="outline">Agile Dev</Button>
-					<Button class="w-fix mt-2 " variant="outline">TDD</Button>
-					<Button class="w-fix mt-2 " variant="outline">CI/CD</Button>
-				</div>
-			</div>
-		</Card.Content>
-	</Card.Root>
+  <Separator />
 
-	<Card.Root>
-		<Card.Header>
-			<Card.Title class="text-2xl">Work Experience</Card.Title>
-			<Card.Description>
-				I am currently focusing on my work as a data engineer, spearheading the digital transformation of power
-				plants
-			</Card.Description>
-		</Card.Header>
-		<Card.Content>
-			<div class="grid gap-3">
-				<div class="font-semibold flex justify-between">Digital Transformation Team <span
-					class="text-sm">5 year</span></div>
-				<Separator class="-mt-2" />
-				<ul class="grid text-sm -mt-3">
-					<li class="flex items-center justify-between">
-						<span class="text-muted-foreground">Data Engineer</span>
-					</li>
-					<li class="flex items-center justify-between">
-						<span class="text-muted-foreground">Software Developer</span>
-					</li>
-					<li class="flex items-center justify-between">
-						<span class="text-muted-foreground">Power Plant DX Solution Review and Introduction</span>
-					</li>
-				</ul>
+  <!-- What I do -->
+  <section>
+    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      What I Do
+    </h2>
+    <div class="grid gap-3">
+      {#each whatIDo as item}
+        <div class="rounded-lg border px-4 py-3">
+          <span class="font-semibold">{$lang === 'ko' ? item.ko.title : item.en.title}</span>
+          <span class="text-muted-foreground"> — {$lang === 'ko' ? item.ko.desc : item.en.desc}</span>
+        </div>
+      {/each}
+    </div>
+  </section>
 
-				<div class="font-semibold flex justify-between">Power Plant Operation Team <span
-					class="text-sm">7 year</span></div>
-				<Separator class="-mt-2" />
-				<ul class="grid text-sm -mt-3">
-					<li class="flex items-center justify-between">
-						<span class="text-muted-foreground">CFBC Boiler Operation</span>
-					</li>
-					<li class="flex items-center justify-between">
-						<span class="text-muted-foreground">Operational Administrative Support</span>
-					</li>
-				</ul>
-			</div>
-		</Card.Content>
-	</Card.Root>
+  <!-- Selected Work -->
+  <section>
+    <div class="mb-4 flex items-center justify-between">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        Selected Work
+      </h2>
+      <a href="{base}/projects" class="text-xs text-muted-foreground transition-colors hover:text-foreground">
+        {$lang === 'ko' ? '전체 보기 →' : 'View all →'}
+      </a>
+    </div>
+    <div class="grid gap-3 sm:grid-cols-3">
+      {#each selectedWork as work}
+        <a
+          href="{base}/projects"
+          class="rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50"
+        >
+          <p class="font-semibold">{$lang === 'ko' ? work.ko.title : work.en.title}</p>
+          <p class="mt-1 text-sm text-muted-foreground">
+            {$lang === 'ko' ? work.ko.achievement : work.en.achievement}
+          </p>
+        </a>
+      {/each}
+    </div>
+  </section>
 
-	<!-- 최근 프로젝트 미리보기 -->
-	<Card.Root>
-		<Card.Header>
-			<div class="flex items-center justify-between">
-				<Card.Title class="text-2xl">
-					{$lang === 'ko' ? '최근 프로젝트' : 'Recent Projects'}
-				</Card.Title>
-				<a
-					href="{base}/projects"
-					class="text-sm text-muted-foreground transition-colors hover:text-foreground"
-				>
-					{$lang === 'ko' ? '전체 보기 →' : 'View all →'}
-				</a>
-			</div>
-		</Card.Header>
-		<Card.Content>
-			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				{#each data.recentProjects as project (project.title_en)}
-					<ProjectCard {project} onclick={() => openModal(project)} />
-				{/each}
-			</div>
-		</Card.Content>
-	</Card.Root>
+  <!-- Writing -->
+  <section>
+    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      Writing
+    </h2>
+    <div class="divide-y">
+      {#each writing as post}
+        <a
+          href={post.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between py-3 text-sm transition-colors hover:text-foreground"
+        >
+          <span>{$lang === 'ko' ? post.ko : post.en}</span>
+          <span class="ml-4 shrink-0 text-xs text-muted-foreground">Medium →</span>
+        </a>
+      {/each}
+    </div>
+  </section>
+
+  <Separator />
+
+  <!-- Career -->
+  <section>
+    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      Career
+    </h2>
+    <div class="grid gap-5 border-l pl-4">
+      {#each career as job}
+        <div>
+          <p class="font-semibold">{$lang === 'ko' ? job.ko.company : job.en.company}</p>
+          <p class="text-sm text-muted-foreground">
+            {job.period} · {$lang === 'ko' ? job.ko.desc : job.en.desc}
+          </p>
+        </div>
+      {/each}
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="pb-8">
+    <h2 class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      Education & Certifications
+    </h2>
+    <p class="text-sm text-muted-foreground">
+      {$lang === 'ko' ? education.ko : education.en}
+    </p>
+    <p class="mt-1 text-sm text-muted-foreground">
+      {$lang === 'ko' ? certifications.ko : certifications.en}
+    </p>
+  </section>
+
 </div>
-
-<ProjectModal project={selectedProject} bind:open={modalOpen} />
