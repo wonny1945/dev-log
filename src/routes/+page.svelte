@@ -172,13 +172,13 @@
   </section>
 
   <!-- What I do -->
-  <section class="rounded-xl bg-muted/40 px-6 py-6">
-    <h2 class="mb-5 text-sm font-bold tracking-wide">
+  <section>
+    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
       What I Do
     </h2>
     <div class="grid gap-3">
       {#each whatIDo as item}
-        <div class="rounded-lg border bg-background px-4 py-3">
+        <div class="rounded-lg border px-4 py-3">
           <span class="font-semibold">{$lang === 'ko' ? item.ko.title : item.en.title}</span>
           <span class="text-muted-foreground"> — {$lang === 'ko' ? item.ko.desc : item.en.desc}</span>
         </div>
@@ -188,8 +188,8 @@
 
   <!-- Selected Work -->
   <section>
-    <div class="mb-5 flex items-center justify-between">
-      <h2 class="text-sm font-bold tracking-wide">
+    <div class="mb-4 flex items-center justify-between">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         Selected Work
       </h2>
       <a href="{base}/projects" class="text-xs text-muted-foreground transition-colors hover:text-foreground">
@@ -201,10 +201,10 @@
         <a
           href="{base}/projects"
           aria-label="{$lang === 'ko' ? work.ko.title : work.en.title} — {$lang === 'ko' ? '프로젝트 보기' : 'View project'}"
-          class="rounded-xl border px-4 py-4 transition-colors hover:bg-muted/50"
+          class="rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50"
         >
           <p class="font-semibold">{$lang === 'ko' ? work.ko.title : work.en.title}</p>
-          <p class="mt-1 text-sm font-medium text-muted-foreground">
+          <p class="mt-1 text-sm text-muted-foreground">
             {$lang === 'ko' ? work.ko.achievement : work.en.achievement}
           </p>
         </a>
@@ -213,11 +213,11 @@
   </section>
 
   <!-- Writing -->
-  <section class="rounded-xl bg-muted/40 px-6 py-6">
-    <h2 class="mb-4 text-sm font-bold tracking-wide">
+  <section>
+    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
       Writing
     </h2>
-    <div class="divide-y divide-border">
+    <div class="divide-y">
       {#each writing as post}
         <a
           href={post.url}
@@ -234,7 +234,7 @@
 
   <!-- Education & Certifications -->
   <section class="pb-8">
-    <h2 class="mb-3 text-sm font-bold tracking-wide">
+    <h2 class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
       Education & Certifications
     </h2>
     <p class="text-sm text-muted-foreground">
