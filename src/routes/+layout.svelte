@@ -10,9 +10,9 @@
   import { lang, toggleLang } from '$lib/stores/language';
 
   const menus = [
-    { name: 'About', nameEn: 'About', path: `${base}/`, external: false },
-    { name: '프로젝트', nameEn: 'Projects', path: `${base}/projects`, external: false },
-    { name: 'Blog', nameEn: 'Blog', path: 'https://medium.com/@wonny1945', external: true }
+    { label: 'About', path: `${base}/`, external: false },
+    { label: 'Projects', path: `${base}/projects`, external: false },
+    { label: 'Blog', path: 'https://medium.com/@wonny1945', external: true }
   ];
 
   let scrollY = 0;
@@ -28,19 +28,19 @@
     class="sticky top-0 z-50 flex h-16 items-center justify-between px-4 transition-all duration-200 md:px-8
       {scrolled ? 'border-b bg-background/95 backdrop-blur-sm' : 'bg-transparent'}"
   >
-    <a href="{base}/" class="text-lg font-bold tracking-tight">Wonny</a>
     <nav class="flex items-center gap-6 text-sm">
       {#each menus as menu}
         <a
           href={menu.path}
           target={menu.external ? '_blank' : undefined}
           rel={menu.external ? 'noopener noreferrer' : undefined}
+          aria-current={currentPath === menu.path || (menu.path === `${base}/` && currentPath === `${base}`) ? 'page' : undefined}
           class="transition-colors hover:text-foreground
-            {currentPath === menu.path.replace(base, '') || (menu.path === `${base}/` && currentPath === '/')
+            {currentPath === menu.path || (menu.path === `${base}/` && currentPath === `${base}`)
               ? 'font-semibold text-foreground'
               : 'text-muted-foreground'}"
         >
-          {$lang === 'ko' ? menu.name : menu.nameEn}
+          {menu.label}
         </a>
       {/each}
     </nav>
