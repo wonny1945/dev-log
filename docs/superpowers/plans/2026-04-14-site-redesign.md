@@ -872,7 +872,9 @@ export const prerender = true;
     }
   ];
 
-  // NOTE: 실제 Medium 포스트 URL로 교체 필요. 현재는 프로필 링크로 임시 설정.
+  // NOTE: url 값을 실제 Medium 시리즈/포스트 URL로 교체할 것.
+  // 시리즈 URL 형식 예: https://medium.com/@wonny1945/list/<series-name>
+  // 현재는 프로필 링크로 임시 설정.
   const writing = [
     {
       ko: 'AWS CDK로 서버리스 구축한 이야기',
