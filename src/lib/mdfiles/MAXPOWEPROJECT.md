@@ -1,13 +1,15 @@
 ---
-title_ko: 발전소 최대 출력 예측 프로젝트
-title_en: Power Plant Maximum Output Prediction Project
-type: work
-duration: 2021.03 ~ 2021.06
-overview_ko: XGBoost 기반 AI 모델로 복합화력발전소 최대 출력을 예측하여 입찰 프로세스 개선
-overview_en: Improved bidding process by predicting max output of combined cycle power plant via XGBoost
-role_ko: FE 개발자 · AI 모델 개발자
-role_en: Front-end Developer · AI Model Developer
-tech: JavaScript, HTML, CSS, Python, Django, Pandas, XGBoost
+title_ko: LNG 발전소 최대 출력 예측 리서치
+title_en: LNG Power Plant Maximum Output Prediction
+category: 개발
+tags: 개발
+duration: 2020.01 ~ 2021.01
+overview_ko: XGBoost 기반 발전소 최대 출력 예측 AI 모델. Vue.js 시각화 웹앱. 사내 정식 프로젝트 승격.
+overview_en: XGBoost-based power plant maximum output prediction AI model with Vue.js visualization. Promoted to official project.
+role_ko: Full Stack · ML Engineer
+role_en: Full Stack · ML Engineer
+tech: XGBoost, Django, Vue.js, Python, Pandas
+achievement: 사내 프로젝트 승격
 thumbnail: ""
 screenshots: []
 ---

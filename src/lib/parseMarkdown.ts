@@ -3,19 +3,22 @@ import { marked } from "marked";
 export interface ProjectMetadata {
   title_ko: string;
   title_en: string;
-  type: "work" | "side";
+  category: string;        // '개발' | 'dx-ax' | '사이드'
+  tags: string;            // comma-separated: '개발, 발표'
   duration: string;
   overview_ko: string;
   overview_en: string;
   role_ko: string;
   role_en: string;
   tech: string;
+  achievement: string;
   thumbnail: string;
   screenshots: string[];
 }
 
 export interface Project extends ProjectMetadata {
   techList: string[];
+  tagList: string[];
   content: string;
 }
 

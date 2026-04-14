@@ -22,11 +22,13 @@
 
 	const FILTER_LABELS: Record<FilterType, { ko: string; en: string }> = {
 		all: { ko: '전체', en: 'All' },
-		work: { ko: '회사', en: 'Work' },
-		side: { ko: '사이드', en: 'Side' }
+		개발: { ko: '개발', en: 'Dev' },
+		'dx-ax': { ko: 'DX/AX', en: 'DX/AX' },
+		사이드: { ko: '사이드', en: 'Side' },
+		발표: { ko: '발표', en: 'Talk' }
 	};
 
-	const FILTER_KEYS: FilterType[] = ['all', 'work', 'side'];
+	const FILTER_KEYS: FilterType[] = ['all', '개발', 'dx-ax', '사이드', '발표'];
 </script>
 
 <div class="grid gap-6">
