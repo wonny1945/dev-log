@@ -83,7 +83,7 @@
         company: 'GS EPS · DX Solution Team Manager',
         desc: 'Cloud Full Stack Development, MLOps, DX Solution Discovery'
       },
-      period: '2020.07 – 현재'
+      period: { ko: '2020.07 – 현재', en: '2020.07 – Present' }
     },
     {
       ko: {
@@ -94,7 +94,7 @@
         company: 'GS EPS · Bio-Operations Team',
         desc: 'CFBC Biomass Power Plant operations and management'
       },
-      period: '2014.01 – 2020.07'
+      period: { ko: '2014.01 – 2020.07', en: '2014.01 – 2020.07' }
     }
   ];
 
@@ -117,27 +117,43 @@
   </style>
 </svelte:head>
 
-<div class="grid gap-12">
+<div class="grid gap-16">
 
-  <!-- Hero -->
+  <!-- Hero + Career -->
   <section class="pt-4">
     <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
       PRAGMATIC DEVELOPER · CLOUD FULL STACK · DX/AX
     </p>
-    <h1 class="mb-3 text-4xl font-black tracking-tight">
+    <h1 class="mb-4 text-4xl font-black tracking-tight">
       {$lang === 'ko' ? '원준일 (Wonny Won)' : 'Wonny Won (원준일)'}
     </h1>
-    <p class="mb-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+    <p class="mb-8 max-w-xl text-base leading-relaxed text-muted-foreground">
       {#if $lang === 'ko'}
         발전소 현장 6년 + DX팀 5년 —<br />
-        현장 문제를 직접 코드로 풀어온 엔지니어입니다.<br />
-        기획부터 배포까지 혼자 끌고 갑니다.
+        현장의 문제를 DX/AX로 전환하는 엔지니어입니다.<br />
+        기획부터 개발·배포까지 전 과정을 주도하며 팀과 함께 만들어갑니다.
       {:else}
-        6 years in power plant operations + 5 years in DX team —<br />
-        an engineer who solves field problems directly with code.<br />
-        From planning to deployment, end-to-end.
+        6 years on the plant floor + 5 years in DX —<br />
+        an engineer who transforms operational challenges into DX/AX solutions.<br />
+        Leading end-to-end from concept to deployment, collaborating across teams.
       {/if}
     </p>
+
+    <!-- Career (inline after intro) -->
+    <div class="mb-8 grid gap-4 border-l-2 border-foreground/20 pl-5">
+      {#each career as job}
+        <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-6">
+          <p class="font-semibold">{$lang === 'ko' ? job.ko.company : job.en.company}</p>
+          <p class="text-sm text-muted-foreground">
+            {$lang === 'ko' ? job.period.ko : job.period.en}
+          </p>
+        </div>
+        <p class="text-sm text-muted-foreground -mt-2 pl-0">
+          {$lang === 'ko' ? job.ko.desc : job.en.desc}
+        </p>
+      {/each}
+    </div>
+
     <div class="no-print flex flex-wrap gap-2">
       <Button variant="outline" size="sm" href="https://github.com/wonny1945" target="_blank" rel="noopener noreferrer">
         GitHub
@@ -155,16 +171,14 @@
     </div>
   </section>
 
-  <Separator />
-
   <!-- What I do -->
-  <section>
-    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+  <section class="rounded-xl bg-muted/40 px-6 py-6">
+    <h2 class="mb-5 text-sm font-bold tracking-wide">
       What I Do
     </h2>
     <div class="grid gap-3">
       {#each whatIDo as item}
-        <div class="rounded-lg border px-4 py-3">
+        <div class="rounded-lg border bg-background px-4 py-3">
           <span class="font-semibold">{$lang === 'ko' ? item.ko.title : item.en.title}</span>
           <span class="text-muted-foreground"> — {$lang === 'ko' ? item.ko.desc : item.en.desc}</span>
         </div>
@@ -174,8 +188,8 @@
 
   <!-- Selected Work -->
   <section>
-    <div class="mb-4 flex items-center justify-between">
-      <h2 class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+    <div class="mb-5 flex items-center justify-between">
+      <h2 class="text-sm font-bold tracking-wide">
         Selected Work
       </h2>
       <a href="{base}/projects" class="text-xs text-muted-foreground transition-colors hover:text-foreground">
@@ -186,10 +200,11 @@
       {#each selectedWork as work}
         <a
           href="{base}/projects"
-          class="rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50"
+          aria-label="{$lang === 'ko' ? work.ko.title : work.en.title} — {$lang === 'ko' ? '프로젝트 보기' : 'View project'}"
+          class="rounded-xl border px-4 py-4 transition-colors hover:bg-muted/50"
         >
           <p class="font-semibold">{$lang === 'ko' ? work.ko.title : work.en.title}</p>
-          <p class="mt-1 text-sm text-muted-foreground">
+          <p class="mt-1 text-sm font-medium text-muted-foreground">
             {$lang === 'ko' ? work.ko.achievement : work.en.achievement}
           </p>
         </a>
@@ -198,11 +213,11 @@
   </section>
 
   <!-- Writing -->
-  <section>
-    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+  <section class="rounded-xl bg-muted/40 px-6 py-6">
+    <h2 class="mb-4 text-sm font-bold tracking-wide">
       Writing
     </h2>
-    <div class="divide-y">
+    <div class="divide-y divide-border">
       {#each writing as post}
         <a
           href={post.url}
@@ -217,28 +232,9 @@
     </div>
   </section>
 
-  <Separator />
-
-  <!-- Career -->
-  <section>
-    <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-      Career
-    </h2>
-    <div class="grid gap-5 border-l pl-4">
-      {#each career as job}
-        <div>
-          <p class="font-semibold">{$lang === 'ko' ? job.ko.company : job.en.company}</p>
-          <p class="text-sm text-muted-foreground">
-            {job.period} · {$lang === 'ko' ? job.ko.desc : job.en.desc}
-          </p>
-        </div>
-      {/each}
-    </div>
-  </section>
-
   <!-- Education & Certifications -->
   <section class="pb-8">
-    <h2 class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+    <h2 class="mb-3 text-sm font-bold tracking-wide">
       Education & Certifications
     </h2>
     <p class="text-sm text-muted-foreground">
