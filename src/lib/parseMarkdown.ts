@@ -3,8 +3,8 @@ import { marked } from "marked";
 export interface ProjectMetadata {
   title_ko: string;
   title_en: string;
-  category: string;        // '개발' | 'dx-ax' | '사이드'
-  tags: string;            // comma-separated: '개발, 발표'
+  category: string; // '개발' | 'dx-ax' | '사이드'
+  tags: string; // comma-separated: '개발, 발표'
   duration: string;
   overview_ko: string;
   overview_en: string;
