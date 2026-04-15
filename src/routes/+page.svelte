@@ -1,13 +1,7 @@
 <script lang="ts">
   import { lang } from '$lib/stores/language';
   import { base } from '$app/paths';
-  import { Separator } from '$lib/components/ui/separator';
   import { Button } from '$lib/components/ui/button';
-  import Printer from 'lucide-svelte/icons/printer';
-
-  function printPage() {
-    if (typeof window !== 'undefined') window.print();
-  }
 
   const whatIDo = [
     {
@@ -57,19 +51,16 @@
     }
   ];
 
-  // NOTE: Replace url values with actual Medium series/post URLs when ready.
-  // Series URL format: https://medium.com/@wonny1945/list/<series-name>
-  // Currently set to profile link as placeholder.
   const writing = [
     {
-      ko: 'AWS CDK로 서버리스 구축한 이야기',
-      en: 'How I Built a Serverless System with AWS CDK',
-      url: 'https://medium.com/@wonny1945'
+      ko: 'About DX',
+      en: 'About DX',
+      url: 'https://medium.com/@wonny1945/list/about-dx-895ec7e808dd'
     },
     {
-      ko: '발전소 데이터를 실시간으로 분석하기까지',
-      en: 'Building Real-time Power Plant Data Analytics',
-      url: 'https://medium.com/@wonny1945'
+      ko: 'About Industry',
+      en: 'About Industry',
+      url: 'https://medium.com/@wonny1945/list/about-industry-2614f8e8a1d4'
     }
   ];
 
@@ -109,14 +100,6 @@
   };
 </script>
 
-<svelte:head>
-  <style>
-    @media print {
-      header, .no-print { display: none !important; }
-    }
-  </style>
-</svelte:head>
-
 <div class="grid gap-16">
 
   <!-- Hero + Career -->
@@ -129,13 +112,13 @@
     </h1>
     <p class="mb-8 max-w-xl text-base leading-relaxed text-muted-foreground">
       {#if $lang === 'ko'}
-        발전소 현장 6년 + DX팀 5년 —<br />
-        현장의 문제를 DX/AX로 전환하는 엔지니어입니다.<br />
-        기획부터 개발·배포까지 전 과정을 주도하며 팀과 함께 만들어갑니다.
+        발전소 현장 7년, DX 6년 —<br />
+        현장의 Pain Point를 DX/AX로 전환하는 프러덕트 엔지니어.<br />
+        기획부터 배포·운영까지, 팀과 함께 전 과정을 이끕니다.
       {:else}
-        6 years on the plant floor + 5 years in DX —<br />
-        an engineer who transforms operational challenges into DX/AX solutions.<br />
-        Leading end-to-end from concept to deployment, collaborating across teams.
+        7 years on the plant floor, 6 years in DX —<br />
+        a product engineer who turns field pain points into DX/AX solutions.<br />
+        Leading end-to-end — from concept to deployment and operations — with the team.
       {/if}
     </p>
 
@@ -163,10 +146,6 @@
       </Button>
       <Button variant="outline" size="sm" href="https://zdnet.co.kr/view/?no=20251111113533" target="_blank" rel="noopener noreferrer">
         {$lang === 'ko' ? 'ZDNet 인터뷰' : 'ZDNet Interview'}
-      </Button>
-      <Button variant="outline" size="sm" on:click={printPage}>
-        <Printer class="mr-1.5 h-3.5 w-3.5" />
-        {$lang === 'ko' ? 'PDF 저장' : 'Save PDF'}
       </Button>
     </div>
   </section>
