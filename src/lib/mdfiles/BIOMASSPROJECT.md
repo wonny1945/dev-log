@@ -1,15 +1,15 @@
 ---
-title_ko: 발전소 Bottom Ash 입도 분석 업무 자동화
-title_en: Power Plant Bottom Ash Analysis Automation
-category: 개발
-tags: 개발, 발표
-duration: 2023.06 ~
-overview_ko: Airflow 파이프라인 + Streamlit 대시보드. 하루 2회 수작업 → 1초 단위 실시간 분석. 약품 사용 44% 절감.
-overview_en: Airflow pipeline + Streamlit dashboard. Manual 2x/day → real-time 1s interval analysis. 44% chemical cost reduction.
+title_ko: Bottom Ash 분석 자동화 — 머신비전·클라우드
+title_en: Bottom Ash Analysis Automation — Machine Vision & Cloud
+category: dx-ax
+tags: dx-ax
+duration: 2023 ~ 2025
+overview_ko: 머신비전 스타트업 협업 → 현장 센서 구축, 클라우드 기반 데이터 엔지니어링·시각화, 현업 테스트 거쳐 안정화. 하루 2회 수작업 입도 분석을 실시간 자동화로 전환.
+overview_en: Collaborated with machine vision startup to build on-site sensors, cloud data engineering and visualization, stabilized through field testing. Transformed 2x/day manual analysis into real-time automation.
 role_ko: PM · Data Engineer
 role_en: PM · Data Engineer
-tech: Airflow, Streamlit, AWS CDK, Lambda, S3, Python
-achievement: 44% 절감
+tech: 머신비전, AWS CDK, Airflow, Streamlit, Lambda, S3, Python
+achievement: 약품 사용 33% 절감
 thumbnail: ""
 screenshots: []
 ---
