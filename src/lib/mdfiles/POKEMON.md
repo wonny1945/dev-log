@@ -10,6 +10,7 @@ role_ko: 기획·개발
 role_en: Planning & Development
 tech: SvelteKit, TypeScript
 achievement: ""
+url: https://pokemon-gacha.vercel.app/
 thumbnail: ""
 screenshots: []
 ---

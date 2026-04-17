@@ -26,11 +26,11 @@
     },
     {
       ko: {
-        title: '데이터 파이프라인 & MLOps',
+        title: '데이터 파이프라인 & DevOps',
         desc: '발전소 운영 데이터 ETL, 이상감지, 실시간 모니터링'
       },
       en: {
-        title: 'Data Pipeline & MLOps',
+        title: 'Data Pipeline & DevOps',
         desc: 'Power plant operational data ETL, anomaly detection, real-time monitoring'
       }
     }
@@ -38,16 +38,16 @@
 
   const selectedWork = [
     {
-      ko: { title: '사내 기술자료 시스템', achievement: '사용자 활용도 800% ↑' },
-      en: { title: 'Technical Document System', achievement: 'User adoption +800%' }
+      ko: { title: '사내 기술자료 시스템', achievement: '사용자 10배 ↑' },
+      en: { title: 'Technical Document System', achievement: 'Users 10× growth' }
     },
     {
-      ko: { title: 'Bottom Ash 분석 자동화', achievement: '운영비 44% 절감' },
-      en: { title: 'Bottom Ash Analysis Automation', achievement: '44% cost reduction' }
+      ko: { title: 'Bottom Ash 분석 자동화', achievement: '약품 33% 절감' },
+      en: { title: 'Bottom Ash Analysis Automation', achievement: '33% chemical cost reduction' }
     },
     {
-      ko: { title: '조기경보 Siren-X 도입', achievement: '24건/연 조기감지' },
-      en: { title: 'Early Warning Siren-X', achievement: '24 cases/year early detection' }
+      ko: { title: '조기경보 Siren-X 정착', achievement: '15건 사고방지' },
+      en: { title: 'Early Warning Siren-X', achievement: '15 incidents prevented' }
     }
   ];
 
@@ -68,11 +68,11 @@
     {
       ko: {
         company: 'GS EPS · DX솔루션팀 매니저',
-        desc: 'Cloud Full Stack 개발, MLOps, DX 솔루션 발굴'
+        desc: 'Cloud Full Stack 개발, DevOps, DX 솔루션 발굴'
       },
       en: {
         company: 'GS EPS · DX Solution Team Manager',
-        desc: 'Cloud Full Stack Development, MLOps, DX Solution Discovery'
+        desc: 'Cloud Full Stack Development, DevOps, DX Solution Discovery'
       },
       period: { ko: '2020.07 – 현재', en: '2020.07 – Present' }
     },
