@@ -38,16 +38,16 @@
 
   const selectedWork = [
     {
-      ko: { title: '사내 기술자료 시스템', achievement: '사용자 활용도 800% ↑' },
-      en: { title: 'Technical Document System', achievement: 'User adoption +800%' }
+      ko: { title: '사내 기술자료 시스템', achievement: '사용자 10배 ↑' },
+      en: { title: 'Technical Document System', achievement: 'Users 10× growth' }
     },
     {
-      ko: { title: 'Bottom Ash 분석 자동화', achievement: '운영비 44% 절감' },
-      en: { title: 'Bottom Ash Analysis Automation', achievement: '44% cost reduction' }
+      ko: { title: 'Bottom Ash 분석 자동화', achievement: '약품 33% 절감' },
+      en: { title: 'Bottom Ash Analysis Automation', achievement: '33% chemical cost reduction' }
     },
     {
-      ko: { title: '조기경보 Siren-X 도입', achievement: '24건/연 조기감지' },
-      en: { title: 'Early Warning Siren-X', achievement: '24 cases/year early detection' }
+      ko: { title: '조기경보 Siren-X 정착', achievement: '15건 사고방지' },
+      en: { title: 'Early Warning Siren-X', achievement: '15 incidents prevented' }
     }
   ];
 
