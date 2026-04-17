@@ -12,6 +12,7 @@ export interface ProjectMetadata {
   role_en: string;
   tech: string;
   achievement: string;
+  url?: string; // side project external link
   thumbnail: string;
   screenshots: string[];
 }

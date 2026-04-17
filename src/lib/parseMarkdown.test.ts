@@ -48,4 +48,47 @@ describe("parseMarkdown", () => {
     const html = markdownToHtml("**bold**");
     expect(html).toContain("<strong>bold</strong>");
   });
+
+  it("parses url field from frontmatter", () => {
+    const md = `---
+title_ko: 테스트
+title_en: Test
+category: 사이드
+tags: 사이드
+duration: 2024 ~
+overview_ko: 설명
+overview_en: Description
+role_ko: 개발
+role_en: Dev
+tech: SvelteKit
+achievement: ""
+url: https://example.com/
+thumbnail: ""
+screenshots: []
+---
+`;
+    const { metadata } = parseMarkdown(md);
+    expect(metadata.url).toBe("https://example.com/");
+  });
+
+  it("url is undefined when not present in frontmatter", () => {
+    const md = `---
+title_ko: 테스트
+title_en: Test
+category: 개발
+tags: 개발
+duration: 2024 ~
+overview_ko: 설명
+overview_en: Description
+role_ko: 개발
+role_en: Dev
+tech: SvelteKit
+achievement: ""
+thumbnail: ""
+screenshots: []
+---
+`;
+    const { metadata } = parseMarkdown(md);
+    expect(metadata.url).toBeUndefined();
+  });
 });
