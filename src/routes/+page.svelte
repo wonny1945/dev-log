@@ -26,11 +26,11 @@
     },
     {
       ko: {
-        title: '데이터 파이프라인 & MLOps',
+        title: '데이터 파이프라인 & DevOps',
         desc: '발전소 운영 데이터 ETL, 이상감지, 실시간 모니터링'
       },
       en: {
-        title: 'Data Pipeline & MLOps',
+        title: 'Data Pipeline & DevOps',
         desc: 'Power plant operational data ETL, anomaly detection, real-time monitoring'
       }
     }
@@ -68,11 +68,11 @@
     {
       ko: {
         company: 'GS EPS · DX솔루션팀 매니저',
-        desc: 'Cloud Full Stack 개발, MLOps, DX 솔루션 발굴'
+        desc: 'Cloud Full Stack 개발, DevOps, DX 솔루션 발굴'
       },
       en: {
         company: 'GS EPS · DX Solution Team Manager',
-        desc: 'Cloud Full Stack Development, MLOps, DX Solution Discovery'
+        desc: 'Cloud Full Stack Development, DevOps, DX Solution Discovery'
       },
       period: { ko: '2020.07 – 현재', en: '2020.07 – Present' }
     },
