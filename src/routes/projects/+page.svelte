@@ -49,9 +49,6 @@
 		<div>
 			<h2 class="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
 				{group.year}
-				{#if group.projects.some((p) => p.duration.trim().endsWith('~'))}
-					· 진행 중
-				{/if}
 			</h2>
 			<div class="divide-y">
 				{#each group.projects as project (project.title_en)}
