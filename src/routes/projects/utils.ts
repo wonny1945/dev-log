@@ -23,3 +23,15 @@ export function filterProjects(
   if (filter === "all") return projects;
   return projects.filter((p) => p.tagList.includes(filter));
 }
+
+export function groupByYear(projects: Project[]): { year: string; projects: Project[] }[] {
+  const groups: Record<string, Project[]> = {};
+  for (const p of projects) {
+    const year = p.duration.slice(0, 4);
+    if (!groups[year]) groups[year] = [];
+    groups[year].push(p);
+  }
+  return Object.entries(groups)
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([year, projects]) => ({ year, projects }));
+}
