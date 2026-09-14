@@ -1,15 +1,15 @@
 ---
-title_ko: 배출물질 관리 및 센서 건전성 AI 모니터링 (클라우드 개선 중)
-title_en: Emissions Management & Sensor Health AI Monitoring (Cloud Rebuild)
+title_ko: TMS 배출물질 규제 관리 시스템 클라우드 재구축
+title_en: TMS Emissions Regulatory Management System Cloud Rebuild
 category: 개발
 tags: 개발
-duration: 2026 ~
-overview_ko: XGBoost 이상감지 + Streamlit 기반 시스템을 클라우드 풀스택으로 전환 개발 중.
-overview_en: Rebuilding XGBoost anomaly detection + Streamlit system to cloud-based full-stack.
+duration: 2026
+overview_ko: 6개 발전소 배출 데이터를 30분 주기로 실시간 수집, 3단계 알림으로 규제 위반 선제 대응. AI 센서 이상감지(Stick·Drift·Spike)와 RPA 기동/정지 신고 자동화 포함 풀스택 구축.
+overview_en: Real-time emissions data collection from 6 power plants every 30 minutes with 3-tier alerting for proactive regulatory compliance. Full-stack build including AI sensor anomaly detection (Stick/Drift/Spike) and RPA-automated start/stop reporting.
 role_ko: Full Stack · Data Engineer
 role_en: Full Stack · Data Engineer
-tech: XGBoost, AWS CDK, Python, Streamlit
-achievement: 진행 중
+tech: Next.js, React, AWS CDK, Lambda, DynamoDB, XGBoost, Python
+achievement: 6개 발전소 실시간 규제 관제 구축
 thumbnail: ""
 screenshots: []
 ---
