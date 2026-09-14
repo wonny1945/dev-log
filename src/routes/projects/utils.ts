@@ -24,7 +24,9 @@ export function filterProjects(
   return projects.filter((p) => p.tagList.includes(filter));
 }
 
-export function groupByYear(projects: Project[]): { year: string; projects: Project[] }[] {
+export function groupByYear(
+  projects: Project[],
+): { year: string; projects: Project[] }[] {
   const groups: Record<string, Project[]> = {};
   for (const p of projects) {
     const year = p.duration.slice(0, 4);

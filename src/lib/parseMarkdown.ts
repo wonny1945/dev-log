@@ -48,7 +48,15 @@ export function parseMarkdown(markdown: string): {
       const colonIdx = line.indexOf(":");
       if (colonIdx === -1) continue;
       const key = line.slice(0, colonIdx).trim();
-      const value = line.slice(colonIdx + 1).trim();
+      let value = line.slice(colonIdx + 1).trim();
+      if (
+        key !== "screenshots" &&
+        value.length >= 2 &&
+        value.startsWith('"') &&
+        value.endsWith('"')
+      ) {
+        value = value.slice(1, -1);
+      }
       if (!key || !value) continue;
       if (key === "screenshots") {
         (metadata as Record<string, unknown>)[key] = JSON.parse(value);

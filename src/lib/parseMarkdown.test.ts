@@ -92,3 +92,17 @@ screenshots: []
     expect(metadata.url).toBeUndefined();
   });
 });
+
+describe("quoted frontmatter values", () => {
+  it('strips surrounding double quotes: thumbnail: "" becomes empty string', () => {
+    const md = `---
+title_ko: 테스트
+achievement: ""
+thumbnail: "/images/quoted.png"
+---
+본문`;
+    const { metadata } = parseMarkdown(md);
+    expect(metadata.achievement).toBeUndefined();
+    expect(metadata.thumbnail).toBe("/images/quoted.png");
+  });
+});
