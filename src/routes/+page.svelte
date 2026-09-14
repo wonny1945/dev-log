@@ -38,16 +38,20 @@
 
   const selectedWork = [
     {
-      ko: { title: '사내 기술자료 시스템', achievement: '사용자 10배 ↑' },
-      en: { title: 'Technical Document System', achievement: 'Users 10× growth' }
+      ko: { title: '인계일지 Graph-RAG 검색', achievement: '11년치 운전 이력 검색 실활용' },
+      en: { title: 'Logbook Graph-RAG Search', achievement: '11 years of logs in active use' }
     },
     {
-      ko: { title: 'Bottom Ash 분석 자동화', achievement: '약품 33% 절감' },
-      en: { title: 'Bottom Ash Analysis Automation', achievement: '33% chemical cost reduction' }
+      ko: { title: 'Bottom Ash 분석 자동화', achievement: '약품 33% 절감 · ZDNet 보도' },
+      en: { title: 'Bottom Ash Analysis Automation', achievement: '33% chemical cut · ZDNet coverage' }
     },
     {
-      ko: { title: '조기경보 Siren-X 정착', achievement: '15건 사고방지' },
-      en: { title: 'Early Warning Siren-X', achievement: '15 incidents prevented' }
+      ko: { title: '조기경보 Siren-X 정착', achievement: '2년간 39건 이상 조기 감지' },
+      en: { title: 'Early Warning Siren-X', achievement: '39 early detections in 2 years' }
+    },
+    {
+      ko: { title: 'SPOT 로봇 24시간 점검', achievement: '이상 월 6~10건 감지' },
+      en: { title: 'SPOT Robot 24/7 Inspection', achievement: '6–10 anomalies detected monthly' }
     }
   ];
 
@@ -175,7 +179,7 @@
         {$lang === 'ko' ? '전체 보기 →' : 'View all →'}
       </a>
     </div>
-    <div class="grid gap-3 sm:grid-cols-3">
+    <div class="grid gap-3 sm:grid-cols-2">
       {#each selectedWork as work}
         <a
           href="{base}/projects"
