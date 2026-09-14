@@ -9,7 +9,7 @@ overview_en: Parses PPT/PDF shift logbooks with LLM into Neo4j knowledge graph a
 role_ko: Full Stack · PM
 role_en: Full Stack · PM
 tech: AWS Bedrock, Neo4j, OpenSearch, Lambda, AWS CDK, Python
-achievement: 인계일지 Graph-RAG 검색 시스템 구축
+achievement: 11년치 인계일지 검색 실활용
 thumbnail: ""
 screenshots: []
 ---
