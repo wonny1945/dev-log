@@ -46,8 +46,8 @@
       en: { title: 'Bottom Ash Analysis Automation', achievement: '33% chemical cut · ZDNet coverage' }
     },
     {
-      ko: { title: '조기경보 Siren-X 정착', achievement: '2년간 39건 이상 조기 감지' },
-      en: { title: 'Early Warning Siren-X', achievement: '39 early detections in 2 years' }
+      ko: { title: '조기경보 Siren-X 정착', achievement: '39건 조기감지 · 15건 사고방지' },
+      en: { title: 'Early Warning Siren-X', achievement: '39 early detections · 15 incidents prevented' }
     },
     {
       ko: { title: 'SPOT 로봇 24시간 점검', achievement: '이상 월 6~10건 감지' },
