@@ -9,7 +9,7 @@ overview_en: PM from AI-based equipment anomaly detection POC through 2-year sta
 role_ko: PM · 기술검증
 role_en: PM · Technical Verification
 tech: DataPARC, AI 이상감지, Python
-achievement: 2년간 39건 이상 조기 감지
+achievement: 2년간 39건 조기 감지 · 15건 사고 사전 방지
 thumbnail: ""
 screenshots: []
 ---
